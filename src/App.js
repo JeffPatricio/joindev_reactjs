@@ -1,11 +1,7 @@
 import React from 'react';
-import GlobalStyles from './styles/global';
-import AppProvider from './hooks';
+import './styles/global.css';
+import AppProvider from './contexts';
 
 export default function App() {
-  return (
-    <AppProvider>
-      <GlobalStyles />
-    </AppProvider>
-  );
+  return <AppProvider />;
 }
