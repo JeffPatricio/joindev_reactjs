@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  padding: 3rem 5rem;
+}
+
+.container main {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 4rem 5rem 0 1rem;
+}
+
+.container main > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.container main > div h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--white);
+  max-width: 50rem;
+  margin-bottom: 5rem;
+  margin-top: 3rem;
+  z-index: 2;
+}
+
+.container main > div img {
+  width: 45rem;
+}
+
+.container main form {
+  display: flex;
+  flex-direction: column;
+  width: 28rem;
+}
+
+.container main form h1 {
+  color: var(--white);
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+.container main form input:not([type='checkbox']) {
+  border: 0;
+  background-color: var(--background2);
+  height: 4rem;
+  border-radius: 5px;
+  padding: 0 1.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.container main form input[type='checkbox'] {
+  margin-right: 1rem;
+}
+
+.container main form button {
+  background: var(--blue);
+  color: var(--white);
+  border: 0;
+  font-size: 1.6rem;
+  height: 4rem;
+  padding: 0 5rem;
+  border-radius: 5px;
+  align-self: center;
+  margin-top: 2rem;
+}
+
+.container main form button:hover {
+  background: var(--blue-hover);
+}
+
+.container main form > div {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.container main form > div label {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .container main > div h1 {
+    font-size: 2.5rem;
+    max-width: 40rem;
+  }
+
+  .container main > div img {
+    width: 35rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .container {
+    padding: 3rem;
+  }
+
+  .container main {
+    padding: 10rem 1rem 0 1rem;
+  }
+
+  .container main > div h1 {
+    font-size: 2.5rem;
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 590px) {
+  .container main {
+    justify-content: center;
+  }
+
+  .container main > div {
+    display: none;
+  }
+
+  .container main > form {
+    width: 30rem;
+  }
+}

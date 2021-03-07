@@ -81,11 +81,11 @@
     height: 200px;
   }
 
-  .container ul svg{
+  .container ul svg {
     position: absolute;
     right: 0;
     top: 0;
-    margin: 4rem 5rem 0 0;
+    margin: 4rem 3rem;
   }
 
   .container label[for='check'] {
