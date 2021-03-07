@@ -7,7 +7,7 @@
 
 .container main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex: 1;
   padding: 10rem 5rem 0 1rem;
 }
@@ -15,6 +15,7 @@
 .container main > div {
   display: flex;
   flex-direction: column;
+  margin-right: 7rem;
 }
 
 .container main > div h1 {
@@ -34,6 +35,7 @@
   display: flex;
   flex-direction: column;
   width: 28rem;
+  margin-left: 7rem;
 }
 
 .container main form h1 {
@@ -95,6 +97,10 @@
 @media (max-width: 630px) {
   .container {
     padding: 3rem;
+  }
+
+  .container main form {
+    margin-left: 0;
   }
 
   .container main {
