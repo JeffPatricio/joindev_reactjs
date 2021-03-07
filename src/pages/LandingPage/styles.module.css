@@ -43,3 +43,9 @@
     width: 45rem;
   }
 }
+
+@media (max-width: 425px) {
+  .container main img {
+    width: 35rem;
+  }
+}

@@ -15,7 +15,7 @@ function HeaderLandingPage() {
       <label htmlFor="check">
         <span className="iconify" data-icon="ph:list" data-inline="false" />
       </label>
-      <ul className="menu_mobile">
+      <ul className={styles.menuMobile}>
         <li>
           <NavLink to="/">Início</NavLink>
         </li>
@@ -27,6 +27,9 @@ function HeaderLandingPage() {
             Entrar
           </button>
         </li>
+        <label htmlFor="check">
+          <span className="iconify" data-icon="ph:list" data-inline="false" />
+        </label>
       </ul>
     </header>
   );
