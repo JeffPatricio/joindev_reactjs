@@ -17,7 +17,9 @@ function HeaderLandingPage() {
       </label>
       <ul className={styles.menuMobile}>
         <li>
-          <NavLink to="/">Início</NavLink>
+          <NavLink exact to="/">
+            Início
+          </NavLink>
         </li>
         <li>
           <NavLink to="/signup">Cadastre-se</NavLink>

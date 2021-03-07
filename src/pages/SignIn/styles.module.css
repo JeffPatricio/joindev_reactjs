@@ -83,6 +83,15 @@
   color: var(--white-hover);
 }
 
+.container main form input + span {
+  color: var(--red);
+  margin-bottom: 2rem;
+}
+
+.container main form input[errored='true'] {
+  margin-bottom: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .container main > div h1 {
     font-size: 2.5rem;
