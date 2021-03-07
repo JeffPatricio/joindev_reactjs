@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container img {
+  width: 22rem;
+  cursor: pointer;
+}
+
+.container > ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.container > ul li {
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.container > ul li:hover {
+  color: var(--white-hover);
+}
+
+.container > ul li + li {
+  margin-left: 4rem;
+}
+
+.container > ul li button {
+  background: var(--blue);
+  color: var(--white);
+  border: 0;
+  font-size: 2rem;
+  height: 4rem;
+  padding: 0 5rem;
+  border-radius: 5px;
+}
+
+.container > ul li button:hover {
+  background: var(--blue-hover);
+}
+
+.container svg {
+  display: none;
+  color: var(--white);
+  font-size: 3rem;
+}
+
+.container input[type='checkbox'] {
+}
+
+.container label[for='check']:hover {
+  color: var(--white-hover);
+}
+
+.container label[for='check'] {
+  display: none;
+}
+
+@media (max-width: 630px) {
+  .container > ul li + li {
+    margin-left: 0;
+    margin-top: 3rem;
+  }
+
+  .container ul {
+    transition: all 0.2s linear;
+    top: -200px;
+    right: 0;
+    left: 0;
+    position: absolute;
+    background: var(--background2);
+    z-index: 5;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+
+  .container label[for='check'] {
+    display: block;
+  }
+
+  .container svg {
+    display: block;
+  }
+
+  #check:checked ~ .menu_mobile {
+    transform: translateY(500px);
+  }
+}

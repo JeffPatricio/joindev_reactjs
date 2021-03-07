@@ -7,25 +7,37 @@
 
 :root {
   --blue: #007bdb;
-  --blue-hover: #00589d;
+  --blue-hover: #007cdbda;
   --red: #e83f5b;
-  --red-hover: #be3149;
+  --red-hover: #e83f5bda;
   --green: #0cc782;
-  --green-hover: #08a76c;
+  --green-hover: #0cc782da;
+  --white: #fff;
+  --white-hover: #ffffffda;
   --background: #212121;
   --background2: #333333;
   --placeholder: #999999;
 }
 
-@media (max-width: 1080px) {
+html {
+  font-size: 62.5%;
+}
+
+@media (max-width: 1440px) {
   html {
-    font-size: 93.75%;
+    font-size: 68.75%;
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1080px) {
   html {
-    font-size: 87.5%;
+    font-size: 56.25%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
   }
 }
 
@@ -45,6 +57,7 @@ body,
 html,
 #root {
   height: 100vh;
+  background: var(--background);
 }
 
 button {

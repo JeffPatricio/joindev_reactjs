@@ -13,6 +13,7 @@
     "react/prop-types": "off",
     "react/jsx-fragments": "off",
     "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "max-len": [
       "warn",
       {
