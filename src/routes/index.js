@@ -10,6 +10,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import ForgotPassword from '../pages/ForgotPassword';
 import ActivateAccount from '../pages/ActivateAccount';
+import Colab from '../pages/Colab';
 
 const Routes = ({ authUser }) => {
   return (
@@ -26,6 +27,7 @@ const Routes = ({ authUser }) => {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/forgotpassword" component={ForgotPassword} />
         <Route exact path="/activate" component={ActivateAccount} />
+        <Route exact path="/colab" component={Colab} />
       </Switch>
     </Router>
   );

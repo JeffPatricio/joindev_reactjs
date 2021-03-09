@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  background: #333;
+  width: 25.0rem;
+  height: 100vh;
+}
