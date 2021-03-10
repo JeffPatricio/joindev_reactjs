@@ -5,7 +5,7 @@ import avatarProfile from '../../assets/avatar1.png';
 
 function Menu() {
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <header>
         <img src={logo} alt=" " />
         <span className="iconify" data-icon="uil:bars" data-inline="false" />
@@ -56,7 +56,7 @@ function Menu() {
           </section>
         </li>
       </ul>
-    </main>
+    </div>
   );
 }
 

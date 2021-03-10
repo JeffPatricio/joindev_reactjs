@@ -1,0 +1,9 @@
+.container main {
+  display: flex;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
