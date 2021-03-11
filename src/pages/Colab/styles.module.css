@@ -1,9 +1,14 @@
-.container main {
+.container {
   display: flex;
+  height: auto;
+}
+
+.panelColab {
   width: 100%;
 }
 
-.container {
+.contentPanel {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  padding: 5rem 15rem;
 }

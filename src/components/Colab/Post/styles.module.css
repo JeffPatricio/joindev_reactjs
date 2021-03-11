@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 1.0rem;
+  width: 100%;
+  border: 2px solid #333;
+  color: #FFF;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.container h1{
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+.container h2{
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+.container p{
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-left: 1rem;
+}
+
+.comments{
+  display: flex;
+  align-items: center;
+  width: auto;
+}
