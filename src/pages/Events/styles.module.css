@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  min-height: 100%;
+  height: auto;
+}
+
+.panelColab {
+  width: 100%;
+}
+
+.contentPanel {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 10rem;
+}
+
+.contentPanel h1 {
+  color: #FFF;
+}
+
+.suggestedEvents {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.suggestedEvents h3{
+  color: #FFF;
+  font-size: 2.0rem;
+  font-weight: 500;
+  margin: 5rem 0 3rem 0;
+}
+
+.gridEvents {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  gap: 1rem;
+}

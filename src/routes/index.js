@@ -11,6 +11,7 @@ import SignUp from '../pages/SignUp';
 import ForgotPassword from '../pages/ForgotPassword';
 import ActivateAccount from '../pages/ActivateAccount';
 import Colab from '../pages/Colab';
+import Events from '../pages/Events';
 
 const Routes = ({ authUser }) => {
   return (
@@ -28,6 +29,7 @@ const Routes = ({ authUser }) => {
         <Route exact path="/forgotpassword" component={ForgotPassword} />
         <Route exact path="/activate" component={ActivateAccount} />
         <Route exact path="/colab" component={Colab} />
+        <Route exact path="/events" component={Events} />
       </Switch>
     </Router>
   );
