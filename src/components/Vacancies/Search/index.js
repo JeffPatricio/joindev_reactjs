@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 function Search() {
   return (
     <div className={styles.content}>
-      <h2>Procure um evento</h2>
+      <h2>Procure uma vaga</h2>
       <div className={styles.rowSearch}>
         <div className={styles.search}>
           <span
@@ -12,7 +12,7 @@ function Search() {
             data-icon="uil:search"
             data-inline="false"
           />
-          <input type="text" placeholder="Pesquisar titulo, cargo ou empresa" />
+          <input type="text" placeholder="Pesquisar por título ou descrição" />
         </div>
         <div className={styles.search}>
           <span

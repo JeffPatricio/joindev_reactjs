@@ -1,0 +1,28 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #333;
+  min-height: 20rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.content img {
+  width: 5rem;
+  height: auto;
+}
+
+.content .bodyCard h1{
+  font-size: 1.6rem;
+}
+
+.content .bottomCard h2,
+.content .bodyCard h2{
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #FFF;
+}
+.content .bottomCard h2{
+  text-transform: uppercase;
+}
