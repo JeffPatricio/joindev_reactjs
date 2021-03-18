@@ -121,7 +121,7 @@
 @media (max-width: 590px) {
   .container main {
     justify-content: center;
-    padding: 10rem 0;
+    padding: 5rem 0;
   }
 
   .container main > div {
@@ -131,8 +131,23 @@
   .container main > form {
     width: 100%;
   }
-}
 
-.container main form input[errored='true'] {
-  margin-bottom: 0.5rem;
+  .container main form > div {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .container main > form h1 {
+    font-size: 3rem;
+  }
+
+  .container main > form input:not([type='checkbox']),
+  .container main > form button {
+    height: 5.5rem;
+    font-size: 2.5rem;
+  }
+
+  .container main > form button {
+    margin-top: 4rem;
+  }
 }
