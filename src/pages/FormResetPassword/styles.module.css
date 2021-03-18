@@ -47,6 +47,12 @@
   margin-bottom: 5rem;
 }
 
+.container main form p {
+  color: var(--white);
+  margin-bottom: 4rem;
+  font-weight: 500;
+}
+
 .container main form input:not([type='checkbox']) {
   border: 0;
   background-color: var(--background2);
@@ -56,10 +62,6 @@
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
   color: var(--white);
-}
-
-.container main form input[type='checkbox'] {
-  margin-right: 1rem;
 }
 
 .container main form button {
@@ -76,16 +78,6 @@
 
 .container main form button:hover {
   background: var(--blue-hover);
-}
-
-.container main form > div {
-  display: flex;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-
-.container main form > div label {
-  color: var(--white);
 }
 
 @media (max-width: 768px) {
@@ -130,8 +122,4 @@
   .container main > form {
     width: 30rem;
   }
-}
-
-.container main form input[errored='true'] {
-  margin-bottom: 0.5rem;
 }

@@ -13,23 +13,33 @@
   padding: 4rem 5rem 0 3rem;
 }
 
-.container main > div {
+.container main > section > div {
   display: flex;
   align-items: center;
   margin-bottom: 5rem;
   margin-left: 2rem;
 }
 
-.container main > div p {
+.container main > section > div p {
   color: var(--green);
   font-weight: 500;
   font-size: 2.5rem;
 }
 
-.container main > div svg {
+.container main > section > div svg {
   color: var(--green);
   font-size: 7rem;
   margin-right: 1rem;
+}
+
+.container main > section > div[errorstyle='true'] p,
+.container main > section > div[errorstyle='true'] svg {
+  color: var(--red);
+}
+
+.container main > section div[lightstyle='true'] p,
+.container main > section div[lightstyle='true'] svg {
+  color: var(--white);
 }
 
 @media (max-width: 630px) {

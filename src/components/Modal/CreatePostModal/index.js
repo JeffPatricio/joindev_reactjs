@@ -5,10 +5,6 @@ function CreatePostModal() {
   return (
     <div className={styles.container}>
       <div>
-        {/* <span 
-        class="iconify" 
-        data-icon="uil:multiply" 
-        data-inline="false"></span> */}
         <h1>Adicionar postagem</h1>
         <div className={styles.rowFields}>
           <div className={styles.contentField}>
