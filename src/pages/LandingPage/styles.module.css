@@ -45,7 +45,17 @@
 }
 
 @media (max-width: 425px) {
+  .container {
+    padding: 3rem;
+  }
+
+  .container main {
+    padding: 10rem 0;
+  }
+
   .container main img {
     width: 35rem;
+    position: initial;
+    margin-top: 6rem;
   }
 }
