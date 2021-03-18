@@ -70,7 +70,25 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  filter: brightness(0.8);
+  cursor: not-allowed;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+form input + span {
+  color: var(--red);
+  margin-bottom: 2rem;
+}
+
+form input[errored='true'] {
+  margin-bottom: 0.5rem;
+}
+
+.Toastify__toast--success {
+  background: var(--green);
 }

@@ -131,3 +131,7 @@
     width: 30rem;
   }
 }
+
+.container main form input[errored='true'] {
+  margin-bottom: 0.5rem;
+}

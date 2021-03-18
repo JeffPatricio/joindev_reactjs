@@ -13,6 +13,7 @@ import ActivateAccount from '../pages/ActivateAccount';
 import Colab from '../pages/Colab';
 import Events from '../pages/Events';
 import Vacancies from '../pages/Vacancies';
+import PrivateRoute from './PrivateRoute';
 
 const Routes = ({ authUser }) => {
   return (
@@ -21,17 +22,47 @@ const Routes = ({ authUser }) => {
         <Route
           exact
           path="/"
-          render={() =>
-            authUser.authenticated ? <Redirect to="/main" /> : <LandingPage />
+          render={(props) =>
+            authUser.authenticated ? (
+              <Redirect to="/main" />
+            ) : (
+              <LandingPage {...props} />
+            )
           }
         />
-        <Route exact path="/signin" component={SignIn} />
+        <Route
+          exact
+          path="/signin"
+          render={(props) =>
+            authUser.authenticated ? (
+              <Redirect to="/main" />
+            ) : (
+              <SignIn {...props} />
+            )
+          }
+        />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/forgotpassword" component={ForgotPassword} />
-        <Route exact path="/activate" component={ActivateAccount} />
-        <Route exact path="/colab" component={Colab} />
-        <Route exact path="/events" component={Events} />
-        <Route exact path="/vacancies" component={Vacancies} />
+        <Route exact path="/activate/:userToken" component={ActivateAccount} />
+
+        <PrivateRoute
+          exact
+          path="/colab"
+          authUser={authUser}
+          component={Colab}
+        />
+        <PrivateRoute
+          exact
+          path="/events"
+          authUser={authUser}
+          component={Events}
+        />
+        <PrivateRoute
+          exact
+          path="/vacancies"
+          authUser={authUser}
+          component={Vacancies}
+        />
       </Switch>
     </Router>
   );

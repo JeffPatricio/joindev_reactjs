@@ -16,6 +16,13 @@
     "react/prop-types": "off",
     "no-param-reassign": "off",
     "no-console": "off",
+    "dot-notation": "off",
+    "import/order": "off",
+    "import/no-cycle": "off",
+    "no-shadow": "off",
+    "react/button-has-type": "off",
+    "no-use-before-define": "off",
+    "import/prefer-default-export": "off",
     "max-len": [
       "warn",
       {

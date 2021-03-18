@@ -10,6 +10,9 @@ export default function Input({ name, ...rest }) {
       name: fieldName,
       ref: inputRef,
       getValue: (ref) => {
+        if (!!rest && rest.type === 'checkbox') {
+          return ref.current.checked;
+        }
         return ref.current.value;
       },
       setValue: (ref, value) => {
