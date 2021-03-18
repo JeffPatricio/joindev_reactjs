@@ -121,6 +121,7 @@
 @media (max-width: 590px) {
   .container main {
     justify-content: center;
+    padding: 10rem 0;
   }
 
   .container main > div {
