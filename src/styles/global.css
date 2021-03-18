@@ -83,10 +83,11 @@ a {
 form input + span {
   color: var(--red);
   margin-bottom: 2rem;
+  margin-left: 0.5rem;
 }
 
 form input[errored='true'] {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem !important;
 }
 
 .Toastify__toast--success {

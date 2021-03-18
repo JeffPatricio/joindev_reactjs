@@ -7,7 +7,7 @@ function ToastProvider({ children }) {
   function showToast(message, type = 'default') {
     toast(message, {
       position: 'top-right',
-      autoClose: 5000000,
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -21,7 +21,7 @@ function ToastProvider({ children }) {
     <ToastContext.Provider value={{ showToast }}>
       <ToastContainer
         position="top-right"
-        autoClose={5000000}
+        autoClose={5000}
         hideProgressBar
         newestOnTop={false}
         closeOnClick

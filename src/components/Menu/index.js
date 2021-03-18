@@ -1,9 +1,14 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import styles from './styles.module.css';
 import logo from '../../assets/logo_landing.png';
 import avatarProfile from '../../assets/avatar1.png';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Menu() {
+  const { signOut } = useAuth();
+
   return (
     <div className={styles.container}>
       <header>
@@ -53,6 +58,11 @@ function Menu() {
               data-inline="false"
             />
             <h1>Colab</h1>
+          </section>
+        </li>
+        <li onClick={signOut}>
+          <section>
+            <h1>Sair</h1>
           </section>
         </li>
       </ul>

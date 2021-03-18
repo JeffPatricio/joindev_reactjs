@@ -6,6 +6,7 @@ import React, {
   useEffect,
 } from 'react';
 import Routes from '../routes';
+import LoadingPage from '../pages/LoadingPage';
 import axios from 'axios';
 import { apiUrl, xRequestToken } from '../config';
 import { storageServices } from '../services/storage';
@@ -17,9 +18,29 @@ const AuthContext = createContext();
 
 function AuthProvider() {
   const [authUser, setAuthUser] = useState({ authenticated: false });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    configToken();
+    setTimeout(() => {
+      const authData = storageServices.getAuthData();
+
+      if (!authData) return setLoading(false);
+
+      configToken(authData.token);
+
+      axios
+        .get('/sessions')
+        .then(({ data }) => {
+          if (data.success) {
+            setAuthUser({ ...authData, authenticated: true });
+          }
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+      return null;
+    }, 1500);
   }, []);
 
   function signIn(authData) {
@@ -46,7 +67,8 @@ function AuthProvider() {
         signOut,
       }}
     >
-      <Routes authUser={authUser} />
+      {loading && <LoadingPage />}
+      {!loading && <Routes authUser={authUser} />}
     </AuthContext.Provider>
   );
 }
