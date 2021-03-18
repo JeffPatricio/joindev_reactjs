@@ -21,13 +21,11 @@ function AuthProvider() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     const authData = storageServices.getAuthData();
 
-      if (!authData) return setLoading(false);
-    
-    setTimeout(() => {
+    if (!authData) return setLoading(false);
 
+    setTimeout(() => {
       configToken(authData.token);
 
       axios
@@ -43,6 +41,7 @@ function AuthProvider() {
         });
       return null;
     }, 1500);
+    return null;
   }, []);
 
   function signIn(authData) {
