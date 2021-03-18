@@ -21,10 +21,12 @@ function AuthProvider() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      const authData = storageServices.getAuthData();
+    
+    const authData = storageServices.getAuthData();
 
       if (!authData) return setLoading(false);
+    
+    setTimeout(() => {
 
       configToken(authData.token);
 
