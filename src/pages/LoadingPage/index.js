@@ -3,7 +3,7 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import * as animationData from './loading.json';
 import styles from './styles.module.css';
-import logo from '../../assets/logo_landing.png';
+import logo from '../../assets/logo_landing.svg';
 
 function LoadingPage() {
   return (

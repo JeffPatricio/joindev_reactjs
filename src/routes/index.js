@@ -11,7 +11,6 @@ import SignUp from '../pages/SignUp';
 import ForgotPassword from '../pages/ForgotPassword';
 import FormResetPassword from '../pages/FormResetPassword';
 import ActivateAccount from '../pages/ActivateAccount';
-import Colab from '../pages/Colab';
 import Events from '../pages/Events';
 import Vacancies from '../pages/Vacancies';
 import Main from '../pages/Main';
@@ -59,12 +58,6 @@ const Routes = ({ authUser }) => {
         <Route exact path="/activate/:userToken" component={ActivateAccount} />
 
         <PrivateRoute path="/main" authUser={authUser} component={Main} />
-        <PrivateRoute
-          exact
-          path="/colab"
-          authUser={authUser}
-          component={Colab}
-        />
         <PrivateRoute
           exact
           path="/events"

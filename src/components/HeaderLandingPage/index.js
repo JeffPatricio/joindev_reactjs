@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import logo from '../../assets/logo_landing.png';
+import logo from '../../assets/logo_landing.svg';
 import styles from './styles.module.css';
 
 function HeaderLandingPage() {

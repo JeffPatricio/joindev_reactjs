@@ -25,4 +25,8 @@
     width: 300px !important;
     height: 300px !important;
   }
+
+  .container p {
+    font-size: 2.5rem;
+  }
 }

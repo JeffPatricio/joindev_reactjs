@@ -5,7 +5,7 @@ import ToastProvider from './ToastContext';
 export default function AppProvider({ children }) {
   return (
     <ToastProvider>
-      <AuthProvider>{children}</AuthProvider>;
+      <AuthProvider>{children}</AuthProvider>
     </ToastProvider>
   );
 }

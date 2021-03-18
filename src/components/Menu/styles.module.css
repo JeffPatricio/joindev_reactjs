@@ -2,25 +2,27 @@
   display: flex;
   flex-direction: column;
   background: #333;
-  width: 24.0rem;
-  height: auto;
-  padding: 2.5rem;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  padding: 2rem 1.5rem;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
   z-index: 4;
 }
 
 .container header {
   font-size: 2.2rem;
-  color: #FFF;
+  color: var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4.0rem;
+  margin-bottom: 4rem;
   cursor: pointer;
 }
 
 .container header img {
-  width: 10.0rem;
+  width: 150px;
   height: auto;
 }
 
@@ -28,49 +30,64 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #FFF;
+  color: var(--white);
+  border-bottom: 1.5px solid var(--background);
+  padding: 0 0 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 
-.profile img{
-  width: 6.0rem;
-  height: 6.0rem;
-  margin-bottom: 1.0rem;
+.profile img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 1rem;
 }
 
-.profile section{
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  font-size: 1.6rem;
-  margin-bottom: 1.0rem;
-
-}
-.profile section h1{
+.profile p {
   font-size: 1.6rem;
   margin-left: 0.8rem;
 }
 
-.line {
-  background: #212121;
-  width: 100%;
-  height: 2px;
-  margin-bottom: 1.0rem;
+.profile div {
+  position: absolute;
+  font-size: 2rem;
+  left: 0;
+  cursor: pointer;
+}
+
+.profile > div svg {
+  transition: 0.1s all;
+}
+
+.profile > div:hover > svg {
+  color: var(--blue-light);
+  font-size: 2.3rem;
 }
 
 .container ul {
   list-style: none;
 }
 
-.container ul li section{
+.container ul li {
   display: flex;
   align-items: center;
-  font-size: 2.6rem;
+  font-size: 1.6rem;
   margin-bottom: 2.1rem;
-  color: #FFF;
+  color: var(--white);
   cursor: pointer;
+  transition: 0.1s all;
 }
 
-.container ul li section h1 {
-  font-size: 1.6rem;
-  margin-left: 1.4rem;
+.container ul li:hover {
+  color: var(--blue-light);
+  transform: scale(1.05);
+  margin-left: 10px;
+}
+
+.container ul li p {
+  margin-left: 1rem;
+}
+
+.container ul li svg {
+  font-size: 2rem;
 }

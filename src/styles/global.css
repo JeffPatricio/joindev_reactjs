@@ -8,6 +8,7 @@
 :root {
   --blue: #007bdb;
   --blue-hover: #007cdbda;
+  --blue-light: #599dd1;
   --red: #e83f5b;
   --red-hover: #e83f5bda;
   --green: #0cc782;
@@ -38,12 +39,6 @@ html {
 @media (max-width: 1080px) {
   html {
     font-size: 56.25%;
-  }
-}
-
-@media (max-width: 768px) {
-  html {
-    font-size: 50%;
   }
 }
 
