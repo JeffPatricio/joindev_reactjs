@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 import HeaderPanel from '../../components/HeaderPanel';
-// import Search from '../../components/Colab/Search';
+import Search from '../../components/Colab/Search';
 // import Post from '../../components/Colab/Post';
 
 // import PostModal from '../../components/Modal/PostModal';
@@ -18,8 +18,8 @@ function Colab() {
         <CreatePostModal /> */}
       <HeaderPanel />
       <div className={styles.contentPanel}>
-        {/* <Search />
-        <Post />
+        <Search />
+        {/* <Post />
         <Post />
         <Post />
         <Post />

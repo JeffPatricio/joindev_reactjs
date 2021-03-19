@@ -35,7 +35,7 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  width: 60rem;
+  width: 45%;
 }
 
 @media (max-width: 768px) {
@@ -47,6 +47,10 @@
 @media (max-width: 425px) {
   .container {
     padding: 3rem;
+  }
+
+  .container main h1 {
+    font-size: 3rem;
   }
 
   .container main {
