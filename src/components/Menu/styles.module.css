@@ -41,6 +41,7 @@
   width: 70px;
   height: 70px;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .profile p {
@@ -90,4 +91,21 @@
 
 .container ul li svg {
   font-size: 2rem;
+}
+
+:global(#check_menu) {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    transition: all 0.2s linear;
+    left: -250px;
+    position: absolute;
+    z-index: 10;
+  }
+
+  :global(#check_menu:checked) ~ .container {
+    transform: translateX(250px);
+  }
 }

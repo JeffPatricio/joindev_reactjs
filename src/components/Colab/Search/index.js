@@ -11,7 +11,7 @@ function Search() {
 
       <div className={styles.buttonSearch}>
         <span className="iconify" data-icon="uil:search" data-inline="false" />
-        <h1>Pesquisar</h1>
+        <p>Pesquisar</p>
       </div>
     </div>
   );

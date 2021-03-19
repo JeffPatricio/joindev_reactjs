@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  height: 4rem;
+  height: 3.6rem;
   border: 1px solid var(--blue);
   color: var(--blue);
   background: transparent;
@@ -31,4 +31,16 @@
 .container button:hover {
   color: var(--blue-hover);
   border: 1px solid var(--blue-hover);
+}
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  .container label svg {
+    color: var(--white);
+    font-size: 3rem;
+  }
 }

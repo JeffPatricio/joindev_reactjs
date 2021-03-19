@@ -2,31 +2,36 @@
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  padding: 1.0rem;
+  padding: 2rem 2.5rem;
   width: 100%;
-  border: 2px solid #333;
-  color: #FFF;
+  border: 1px solid #333;
+  color: #fff;
   font-size: 2rem;
   cursor: pointer;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.container h1{
+.container:hover {
+  color: var(--white-hover);
+  border: 1px solid #666;
+}
+
+.container h1 {
   font-size: 1.6rem;
   margin-bottom: 1rem;
 }
-.container h2{
+.container h2 {
   margin-bottom: 1rem;
   font-size: 1.4rem;
   font-weight: 300;
 }
-.container p{
+.container p {
   font-size: 1.4rem;
   font-weight: 300;
   margin-left: 1rem;
 }
 
-.comments{
+.comments {
   display: flex;
   align-items: center;
   width: auto;

@@ -13,3 +13,15 @@
   overflow-y: auto;
   padding: 5rem 10rem;
 }
+
+@media (max-width: 1024px) {
+  .contentPanel {
+    padding: 5rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .contentPanel {
+    padding: 5rem 2rem;
+  }
+}
