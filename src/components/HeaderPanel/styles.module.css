@@ -33,6 +33,10 @@
   border: 1px solid var(--blue-hover);
 }
 
+.container label svg {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .container {
     justify-content: space-between;
@@ -40,6 +44,7 @@
   }
 
   .container label svg {
+    display: block;
     color: var(--white);
     font-size: 3rem;
   }

@@ -14,8 +14,7 @@ function Colab() {
       {/* A tag PostModal é um Card de quando o usuário clica para adicionar um comentario em uma publicação outro usuário.
         <PostModal /> */}
 
-      {/* A tag "CreatePostModal" é um Card quando o usuário clica para criar um novo post
-        <CreatePostModal /> */}
+      {/* <CreatePostModal /> */}
       <HeaderPanel />
       <div className={styles.contentPanel}>
         <Search />
