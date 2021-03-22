@@ -15,6 +15,7 @@
   --green-hover: #0cc782da;
   --white: #fff;
   --white-hover: #ffffffda;
+  --gray: #aba9ae;
   --background: #212121;
   --background2: #333333;
   --placeholder: #999999;
@@ -22,6 +23,7 @@
 
 html {
   font-size: 62.5%;
+  overflow: hidden;
 }
 
 @media (max-width: 2560px) {

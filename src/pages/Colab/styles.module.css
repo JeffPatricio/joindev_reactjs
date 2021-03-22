@@ -1,27 +1,35 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
-
-.contentPanel {
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
   overflow-y: auto;
   padding: 5rem 10rem;
 }
 
+.panelColabs {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  max-width: 850px;
+}
+
 @media (max-width: 1024px) {
-  .contentPanel {
+  .container {
     padding: 5rem;
+  }
+  .panelColabs {
+    width: 85%;
   }
 }
 
-@media (max-width: 425px) {
-  .contentPanel {
+@media (max-width: 500px) {
+  .container {
     padding: 5rem 2rem;
+  }
+
+  .panelColabs {
+    width: 100%;
   }
 }

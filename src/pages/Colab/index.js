@@ -1,22 +1,12 @@
 import React from 'react';
 import styles from './styles.module.css';
-import HeaderPanel from '../../components/HeaderPanel';
 import Search from '../../components/Colab/Search';
 import Post from '../../components/Colab/Post';
-
-// import PostModal from '../../components/Modal/PostModal';
-
-// import CreatePostModal from '../../components/Modal/CreatePostModal';
 
 function Colab() {
   return (
     <div className={styles.container}>
-      {/* A tag PostModal é um Card de quando o usuário clica para adicionar um comentario em uma publicação outro usuário.
-        <PostModal /> */}
-
-      {/* <CreatePostModal /> */}
-      <HeaderPanel />
-      <div className={styles.contentPanel}>
+      <div className={styles.panelColabs}>
         <Search />
         <Post />
         <Post />

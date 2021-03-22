@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './styles.module.css';
-import logo from '../../assets/logo.svg';
-import avatarProfile from '../../assets/avatar1.png';
 
 function Menu() {
   const checkboxRef = useRef();
@@ -10,55 +9,43 @@ function Menu() {
   return (
     <>
       <input ref={checkboxRef} type="checkbox" id="check_menu" />
-      <div
+      <section
         id="backdrop"
         onClick={() => {
           checkboxRef.current.checked = false;
         }}
       />
       <div className={styles.container}>
-        <header>
-          <a href="/main/colab">
-            <img src={logo} alt=" " />
-          </a>
-        </header>
-
-        <div className={styles.profile}>
-          <img src={avatarProfile} alt="Foto do perfil" />
-          <p>Marcos Paulo</p>
-          <div title="Configurações">
-            <span
-              className="iconify"
-              data-icon="ph:gear-light"
-              data-inline="false"
-            />
-          </div>
-        </div>
-
         <ul>
           <li>
-            <span
-              className="iconify"
-              data-icon="ph:briefcase"
-              data-inline="false"
-            />
-            <p>Vagas</p>
+            <NavLink to="/main/colab">
+              <span
+                className="iconify"
+                data-icon="ph:book-open"
+                data-inline="false"
+              />
+              <p>Colab</p>
+            </NavLink>
           </li>
           <li>
-            <span
-              className="iconify"
-              data-icon="ph:calendar-blank"
-              data-inline="false"
-            />
-            <p>Eventos</p>
+            <NavLink to="/main/vacancies">
+              <span
+                className="iconify"
+                data-icon="ph:briefcase"
+                data-inline="false"
+              />
+              <p>Vagas</p>
+            </NavLink>
           </li>
           <li>
-            <span
-              className="iconify"
-              data-icon="ph:book-open"
-              data-inline="false"
-            />
-            <p>Colab</p>
+            <NavLink to="/main/events">
+              <span
+                className="iconify"
+                data-icon="ph:calendar-blank"
+                data-inline="false"
+              />
+              <p>Eventos</p>
+            </NavLink>
           </li>
         </ul>
       </div>
