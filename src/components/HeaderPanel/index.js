@@ -4,10 +4,12 @@ import React, { useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
+import CreateColabModal from '../Modal/CreateColabModal';
 import styles from './styles.module.css';
 
 function HeaderPanel() {
   const dropdownRef = useRef();
+  const modalColabRef = useRef();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -28,12 +30,13 @@ function HeaderPanel() {
 
   return (
     <header className={styles.container}>
+      <CreateColabModal ref={modalColabRef} />
       <div />
       <a href="/main/colab">
         <img src={logo} alt=" " />
       </a>
       <section>
-        <button>
+        <button onClick={() => modalColabRef.current.open()}>
           <span className="iconify" data-icon="uil:plus" data-inline="false" />
           <p>Criar Postagem</p>
         </button>

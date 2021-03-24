@@ -1,0 +1,108 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 12;
+}
+
+.container > div {
+  background: #333;
+  border-radius: 4px;
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+  max-height: 90%;
+  max-width: 70%;
+  min-width: 50%;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  overflow: auto;
+}
+
+.container > div > p {
+  font-weight: 500;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+.container > div > form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.container > div > form > input {
+  height: 40px;
+  border-radius: 5px;
+  background: #212121;
+  border: 0;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  color: white;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.container > div > form > select {
+  height: 180px;
+  border-radius: 5px;
+  background: #212121;
+  border: 0;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.container > div > form > select option {
+  padding: 10px 20px;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.container > div > form > select option:selected {
+  background: red;
+}
+
+.container div .buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.container div .buttons button {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #007bdb;
+  color: #007bdb;
+  background: transparent;
+  padding: 0 25px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.container div .buttons button:hover {
+  border: 1px solid var(--blue-hover);
+  color: var(--blue-hover);
+}
+
+.container div .buttons button + button {
+  margin-left: 1rem;
+  border: 1px solid #ddd;
+  color: #ddd;
+}
+
+.container div .buttons button + button:hover {
+  border: 1px solid #eee;
+  color: #eee;
+}
+
+.container ::-webkit-scrollbar {
+  display: none;
+}
