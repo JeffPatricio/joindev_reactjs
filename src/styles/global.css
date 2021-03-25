@@ -22,25 +22,30 @@
 }
 
 html {
-  font-size: 62.5%;
   overflow: hidden;
 }
 
 @media (max-width: 2560px) {
   html {
-    font-size: 100%;
+    font-size: 81.25%; /* 13px */
+  }
+}
+
+@media (max-width: 1800px) {
+  html {
+    font-size: 68.75%; /* 11px */
   }
 }
 
 @media (max-width: 1440px) {
   html {
-    font-size: 68.75%;
+    font-size: 62.5%; /* 10px */
   }
 }
 
 @media (max-width: 1080px) {
   html {
-    font-size: 56.25%;
+    font-size: 56.25%; /* 9px */
   }
 }
 
