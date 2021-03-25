@@ -4,14 +4,14 @@
   justify-content: center;
   align-items: center;
   background: #333;
-  height: 60px;
-  min-height: 60px;
+  height: 6rem;
+  min-height: 6rem;
   padding: 0 2rem;
   position: relative;
 }
 
 .container > a > img {
-  width: 150px;
+  width: 15rem;
 }
 
 .container > a img {
@@ -29,8 +29,8 @@
 }
 
 .container section > img {
-  height: 40px;
-  width: 40px;
+  height: 4rem;
+  width: 4rem;
   border-radius: 50%;
   margin-left: 2rem;
   cursor: pointer;
@@ -58,7 +58,7 @@
 }
 
 .container section button p {
-  margin-left: 5px;
+  margin-left: 0.5rem;
 }
 
 .container section button:hover {
@@ -70,8 +70,8 @@
   position: absolute;
   background: var(--background2);
   right: 0;
-  top: 50px;
-  width: 280px;
+  top: 5rem;
+  width: 28rem;
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   display: none;
@@ -90,8 +90,8 @@
 }
 
 .container > section > div > header > img {
-  height: 80px;
-  width: 80px;
+  height: 8rem;
+  width: 8rem;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -129,7 +129,7 @@
 
 .container > section > div > header > section {
   display: flex;
-  height: 80px;
+  height: 8rem;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
@@ -137,7 +137,7 @@
 
 .container > section > div > header > section {
   text-align: right;
-  margin-left: 20px;
+  margin-left: 2rem;
 }
 
 .container > section > div > header > section > div > p {
