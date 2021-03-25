@@ -20,6 +20,7 @@ import styles from './styles.module.css';
 import ReactMde from 'react-mde';
 import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
+import { useHistory } from 'react-router-dom';
 
 const schema = Yup.object().shape({
   title: Yup.string().required('Campo obrigatório'),
@@ -32,10 +33,12 @@ const schema = Yup.object().shape({
 function CreatePostModal({ ...props }, ref) {
   const formRef = useRef(null);
   const buttonRef = useRef(null);
+  const tagsRef = useRef({ tags: [] });
   const { showToast } = useToast();
-  const [show, setShow] = useState(true);
-  const [value, setValue] = React.useState('**Hello world!!!**');
+  const [show, setShow] = useState(false);
+  const [value, setValue] = React.useState('');
   const [selectedTab, setSelectedTab] = React.useState();
+  const history = useHistory();
 
   const converter = new Showdown.Converter({
     tables: true,
@@ -55,7 +58,13 @@ function CreatePostModal({ ...props }, ref) {
     []
   );
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios.get('/colabs/tags').then(({ data }) => {
+      if (data.success) {
+        tagsRef.current.tags = data.tags;
+      }
+    });
+  }, []);
 
   async function handleSubmit(data) {
     console.log(data);
@@ -72,8 +81,22 @@ function CreatePostModal({ ...props }, ref) {
       axios
         .post('/colabs', { ...data, tags: dataTags })
         .then(({ data }) => {
+          const { success, message } = data;
           buttonRef.current.removeLoad();
-          console.log(data);
+          if (!success) {
+            showToast(message, 'error');
+            return;
+          }
+
+          showToast(message, 'success');
+          setValue('');
+          setShow(false);
+          history.push({
+            pathname: '/main',
+            state: {
+              reload: true,
+            },
+          });
         })
         .catch(() => {
           buttonRef.current.removeLoad();
@@ -86,6 +109,7 @@ function CreatePostModal({ ...props }, ref) {
           validationErrors[error.path] = error.message;
         });
         formRef.current.setErrors(validationErrors);
+        showToast('Necessário preencher os campos destacados', 'error');
       }
     }
   }
@@ -97,25 +121,12 @@ function CreatePostModal({ ...props }, ref) {
       <div onClick={(e) => e.stopPropagation()}>
         <p>Adicionar postagem</p>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input type="text" label="Título" name="title" />
+          <Input type="text" label="Título" name="title" autoFocus />
           <Select
             label="Tags"
             multiple
             name="tags"
-            options={[
-              {
-                value: '1',
-                label: 'Não relacionada',
-              },
-              {
-                value: '2',
-                label: 'Concluída com sucesso',
-              },
-              {
-                value: '3',
-                label: 'Em andamento no prazo',
-              },
-            ]}
+            options={tagsRef.current.tags}
           />
           <Input hidden value={value} name="text" readOnly />
           <ReactMde

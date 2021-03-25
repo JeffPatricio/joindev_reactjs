@@ -38,29 +38,30 @@
 }
 
 .container > div > form > input {
-  height: 40px;
+  height: 4rem;
   border-radius: 5px;
   background: #212121;
   border: 0;
   margin-bottom: 2rem;
   margin-top: 0.5rem;
   color: white;
-  padding: 0 20px;
+  padding: 0 2rem;
   width: 100%;
 }
 
 .container > div > form > select {
-  height: 180px;
+  height: 18rem;
   border-radius: 5px;
   background: #212121;
   border: 0;
   margin-bottom: 2rem;
   margin-top: 0.5rem;
   width: 100%;
+  padding: 2rem 0;
 }
 
 .container > div > form > select option {
-  padding: 10px 20px;
+  padding: 1rem 2rem;
   color: white;
   font-size: 1.3rem;
 }
@@ -77,7 +78,7 @@
 }
 
 .container div .buttons button {
-  height: 40px;
+  height: 4rem;
   border-radius: 5px;
   border: 1px solid #007bdb;
   color: #007bdb;

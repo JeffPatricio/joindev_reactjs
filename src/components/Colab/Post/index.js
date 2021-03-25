@@ -1,14 +1,17 @@
 import React from 'react';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 import styles from './styles.module.css';
 
-function Post() {
+moment.locale('pt-br');
+
+function Post({ colab }) {
   return (
     <div className={styles.container}>
-      <h1>
-        Programação e café ajudam a sociedade a evoluir conforme a demanda
-      </h1>
+      <h1>{colab.title}</h1>
       <h2>
-        Postado pode <strong>Marcos Paulo</strong> há 12 horas{' '}
+        Postado por <strong>{colab.name}</strong>{' '}
+        {moment(colab.createdAt, 'YYYYMMDD').locale('pt-br').fromNow()}
       </h2>
       <div className={styles.comments}>
         <span
