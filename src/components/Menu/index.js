@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './styles.module.css';
+import logo from '../../assets/logo.svg';
 
 function Menu() {
   const checkboxRef = useRef();
@@ -16,6 +17,10 @@ function Menu() {
         }}
       />
       <div className={styles.container}>
+        <a href="/">
+          <img src={logo} alt=" " />
+        </a>
+
         <ul>
           <li>
             <NavLink to="/main/colab">

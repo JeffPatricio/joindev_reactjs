@@ -1,18 +1,11 @@
 .container {
   display: flex;
-  flex-direction: column;
   height: 100%;
   width: 100%;
 }
 
-.container > section {
-  width: 100%;
+.container > main {
   height: 100%;
-  display: flex;
-}
-
-.container > section > div {
   width: 100%;
-  height: 100%;
-  overflow-y: auto;
+  max-width: calc(100vw - 220px);
 }

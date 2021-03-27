@@ -16,7 +16,7 @@
 .container main h1 {
   font-size: 3.5rem;
   font-weight: 500;
-  color: var(--white);
+  color: var(--font1);
   max-width: 50rem;
   margin-bottom: 5rem;
   z-index: 2;
@@ -25,7 +25,7 @@
 .container main p {
   font-size: 2.3rem;
   font-weight: 300;
-  color: var(--white);
+  color: var(--font1);
   max-width: 45rem;
   z-index: 2;
 }

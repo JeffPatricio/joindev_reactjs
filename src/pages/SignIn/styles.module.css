@@ -21,7 +21,7 @@
 .container main > div h1 {
   font-size: 2.5rem;
   font-weight: 500;
-  color: var(--white);
+  color: var(--font1);
   max-width: 50rem;
   margin-bottom: 5rem;
   z-index: 2;
@@ -39,7 +39,7 @@
 }
 
 .container main form h1 {
-  color: var(--white);
+  color: var(--font1);
   font-size: 2.5rem;
   font-weight: 500;
   margin-top: 2rem;
@@ -48,13 +48,13 @@
 
 .container main form input {
   border: 0;
-  background-color: var(--background2);
+  background-color: var(--gray);
   height: 4rem;
   border-radius: 5px;
   padding: 0 1.5rem;
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
-  color: var(--white);
+  color: var(--font1);
 }
 
 .container main form button {
@@ -76,11 +76,7 @@
 .container main form a {
   align-self: center;
   margin-top: 4rem;
-  color: var(--white);
-}
-
-.container main form a:hover {
-  color: var(--white-hover);
+  color: var(--font1);
 }
 
 .container main form input + span {

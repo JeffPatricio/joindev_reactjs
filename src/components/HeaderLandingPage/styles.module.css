@@ -16,17 +16,13 @@
 }
 
 .container ul li {
-  color: var(--white);
+  color: var(--font1);
   font-size: 2rem;
   cursor: pointer;
 }
 
 .container ul li :global(a.active) {
   color: var(--blue);
-}
-
-.container ul li:hover {
-  color: var(--white-hover);
 }
 
 .container ul li + li {
@@ -49,16 +45,12 @@
 
 .container svg {
   display: none;
-  color: var(--white);
+  color: var(--font1);
   font-size: 3rem;
 }
 
 .container input[type='checkbox'] {
   display: none;
-}
-
-.container label[for='check']:hover {
-  color: var(--white-hover);
 }
 
 .container label[for='check'] {
@@ -85,12 +77,13 @@
     right: 0;
     left: 0;
     position: absolute;
-    background: var(--background2);
+    background: var(--background);
     z-index: 5;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 200px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
   }
 
   .container ul svg {
