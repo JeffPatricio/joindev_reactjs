@@ -12,47 +12,60 @@
   z-index: 12;
 }
 
-.container > div {
-  background: #333;
-  border-radius: 4px;
+.container > section {
+  background: var(--background);
+  border-radius: 30px;
   color: #fff;
   padding: 4rem 2rem;
   text-align: center;
   max-height: 90%;
-  max-width: 70%;
-  min-width: 50%;
+  max-width: 38%;
+  min-width: 38%;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+}
+
+.container > section > div {
   overflow: auto;
+  max-height: 100%;
 }
 
-.container > div > p {
-  font-weight: 500;
-  margin-bottom: 3rem;
+.container > section > div > p {
+  font-weight: 300;
+  margin-bottom: 3.5rem;
+  margin-top: 1.5rem;
   font-size: 2rem;
+  color: var(--font1);
 }
 
-.container > div > form {
+.container > section > div > form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.container > div > form > input {
+.container > section > div > form > input {
   height: 4rem;
   border-radius: 5px;
-  background: #212121;
+  background: var(--gray);
   border: 0;
   margin-bottom: 2rem;
   margin-top: 0.5rem;
-  color: white;
+  color: var(--font1);
   padding: 0 2rem;
   width: 100%;
 }
 
-.container > div > form > select {
+.container > section > div > form > label {
+  color: var(--font1);
+  font-weight: 300;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.container > section > div > form > select {
   height: 18rem;
   border-radius: 5px;
-  background: #212121;
+  background: var(--gray);
   border: 0;
   margin-bottom: 2rem;
   margin-top: 0.5rem;
@@ -60,14 +73,11 @@
   padding: 2rem 0;
 }
 
-.container > div > form > select option {
+.container > section > div > form > select option {
   padding: 1rem 2rem;
-  color: white;
+  color: var(--font1);
   font-size: 1.3rem;
-}
-
-.container > div > form > select option:selected {
-  background: red;
+  font-weight: 300;
 }
 
 .container div .buttons {
@@ -88,20 +98,10 @@
   cursor: pointer;
 }
 
-.container div .buttons button:hover {
-  border: 1px solid var(--blue-hover);
-  color: var(--blue-hover);
-}
-
 .container div .buttons button + button {
   margin-left: 1rem;
-  border: 1px solid #ddd;
-  color: #ddd;
-}
-
-.container div .buttons button + button:hover {
-  border: 1px solid #eee;
-  color: #eee;
+  border: 1px solid var(--font2);
+  color: var(--font2);
 }
 
 .container ::-webkit-scrollbar {

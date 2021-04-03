@@ -1,155 +1,116 @@
 .container {
   display: flex;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-  background: #333;
-  height: 6rem;
-  min-height: 6rem;
-  padding: 0 2rem;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 7rem;
+  min-height: 7rem;
   position: relative;
+  padding-right: 3rem;
+  margin-bottom: 2rem;
 }
 
-.container > a > img {
-  width: 15rem;
+.container > p {
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  font-weight: 300;
+  color: var(--font1);
 }
 
-.container > a img {
-  transition: 0.2s;
+.container > p > span {
+  font-weight: 500;
 }
 
-.container > a > img:hover {
-  transform: scale(1.1);
-}
-
-.container section {
-  position: absolute;
-  right: 2rem;
-  display: flex;
-}
-
-.container section > img {
+.container > img {
   height: 4rem;
   width: 4rem;
   border-radius: 50%;
-  margin-left: 2rem;
   cursor: pointer;
   transition: 0.2s;
   object-fit: cover;
 }
 
-.container section > img:hover {
+.container > img:hover {
   transform: scale(1.1);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-.container section button {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  height: 3.6rem;
-  border: 1px solid var(--blue);
-  color: var(--blue);
-  background: transparent;
-  padding: 0 1.5rem;
-  font-size: 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.container section button p {
-  margin-left: 0.5rem;
-}
-
-.container section button:hover {
-  color: var(--blue-hover);
-  border: 1px solid var(--blue-hover);
-}
-
-.container > section > div {
+.container > div {
   position: absolute;
-  background: var(--background2);
-  right: 0;
-  top: 5rem;
+  background: var(--background);
+  right: 2rem;
+  top: 6.5rem;
   width: 28rem;
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   display: none;
 }
 
-.container > section > div[show] {
+.container > div[show] {
   display: block;
   transition: 0.2s;
 }
 
-.container > section > div > header {
+.container > div > header {
   display: flex;
-  justify-content: space-between;
-  padding: 3rem 2rem 2rem;
-  border-bottom: 0.5px solid #555;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 3rem 2rem 1rem;
 }
 
-.container > section > div > header > img {
+.container > div > header > img {
   height: 8rem;
   width: 8rem;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.container > section > div > header > p {
-  font-size: 1.4rem;
+.container > div > header > p {
+  font-size: 1.5rem;
   color: var(--gray);
 }
 
-.container > section > div > ul {
+.container > div > ul {
   list-style: none;
   padding: 2rem;
 }
 
-.container > section > div > ul > li > a {
+.container > div > ul > li > a {
   display: flex;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-bottom: 1.8rem;
-  color: var(--white);
+  color: var(--font1);
   cursor: pointer;
   transition: 0.1s all;
   font-weight: 300;
 }
 
-.container > section > div > ul > li > a svg {
+.container > div > ul > li > a svg {
   font-size: 1.8rem;
   margin-right: 1rem;
 }
 
-.container > section > div > ul > li a:hover {
+.container > div > ul > li a:hover {
   color: var(--blue-hover);
   transform: scale(1.05);
 }
 
-.container > section > div > header > section {
+.container > div > header > section {
   display: flex;
-  height: 8rem;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
+  margin-top: 2rem;
 }
 
-.container > section > div > header > section {
-  text-align: right;
-  margin-left: 2rem;
-}
-
-.container > section > div > header > section > div > p {
-  color: #ddd;
-}
-
-.container > section > div > header > section > div > p:first-child {
+.container > div > header > section > div > p {
+  color: var(--font1);
   font-size: 1.4rem;
-  color: white;
 }
 
-.container > section > div > header > section p {
+.container > div > header > section > div > p:first-child {
+  font-size: 1.6rem;
+}
+
+.container > div > header > section p {
   color: var(--blue);
   font-size: 1rem;
   font-size: 300;

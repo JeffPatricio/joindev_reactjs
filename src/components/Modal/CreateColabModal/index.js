@@ -51,7 +51,11 @@ function CreatePostModal({ ...props }, ref) {
     ref,
     () => {
       return {
-        close: () => setShow(false),
+        close: () => {
+          setShow(false);
+          setValue('');
+          setSelectedTab('write');
+        },
         open: () => setShow(true),
       };
     },
@@ -117,37 +121,43 @@ function CreatePostModal({ ...props }, ref) {
   if (!show) return <Fragment />;
 
   return (
-    <div className={styles.container} onClick={() => setShow(false)} {...props}>
-      <div onClick={(e) => e.stopPropagation()}>
-        <p>Adicionar postagem</p>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input type="text" label="Título" name="title" autoFocus />
-          <Select
-            label="Tags"
-            multiple
-            name="tags"
-            options={tagsRef.current.tags}
-          />
-          <Input hidden value={value} name="text" readOnly />
-          <ReactMde
-            value={value}
-            onChange={setValue}
-            selectedTab={selectedTab}
-            onTabChange={setSelectedTab}
-            generateMarkdownPreview={(markdown) =>
-              Promise.resolve(converter.makeHtml(markdown))
-            }
-          />
-          <div className={styles.buttons}>
-            <Button ref={buttonRef} type="submit" text="Salvar" />
-            <Button
-              type="button"
-              text="Cancelar"
-              onClick={() => setShow(false)}
+    <div className={styles.container} {...props}>
+      <section>
+        <div onClick={(e) => e.stopPropagation()}>
+          <p>Adicionar postagem</p>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <Input type="text" label="Título" name="title" autoFocus />
+            <Select
+              label="Tags"
+              multiple
+              name="tags"
+              options={tagsRef.current.tags}
             />
-          </div>
-        </Form>
-      </div>
+            <Input hidden value={value} name="text" readOnly />
+            <label>Conteúdo</label>
+            <ReactMde
+              l18n={{ write: 'Escrever', preview: 'Visualizar' }}
+              minEditorHeight={400}
+              minPreviewHeight={400}
+              value={value}
+              onChange={setValue}
+              selectedTab={selectedTab}
+              onTabChange={setSelectedTab}
+              generateMarkdownPreview={(markdown) =>
+                Promise.resolve(converter.makeHtml(markdown))
+              }
+            />
+            <div className={styles.buttons}>
+              <Button ref={buttonRef} type="submit" text="Salvar" />
+              <Button
+                type="button"
+                text="Cancelar"
+                onClick={() => setShow(false)}
+              />
+            </div>
+          </Form>
+        </div>
+      </section>
     </div>
   );
 }

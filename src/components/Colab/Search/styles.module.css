@@ -19,6 +19,8 @@
   align-items: center;
   border-radius: 8px;
   color: #aaa;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: var(--font2);
 }
 
 .search input {
@@ -28,25 +30,20 @@
   margin-left: 1rem;
   font-size: 1.5rem;
   font-weight: 300;
+  color: var(--font1);
+  font-weight: 300;
 }
 
 .buttonSearch {
   display: flex;
   align-items: center;
-  background: var(--blue);
+  background: transparent;
   font-size: 1.5rem;
-  color: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue);
   border-radius: 8px;
   height: 4rem;
-  padding: 0 1.5rem;
+  padding: 0 3rem;
   margin-left: 1rem;
   cursor: pointer;
-}
-
-.buttonSearch:hover {
-  background: var(--blue-hover);
-}
-
-.buttonSearch p {
-  margin-left: 1rem;
 }

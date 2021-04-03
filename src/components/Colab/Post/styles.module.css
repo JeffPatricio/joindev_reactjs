@@ -1,38 +1,81 @@
 .container {
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  padding: 2rem 2.5rem;
+  border-radius: 30px;
+  padding: 4rem 3rem;
   width: 100%;
-  border: 1px solid #333;
-  color: #fff;
-  font-size: 2rem;
+  border: 0;
   cursor: pointer;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--background);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .container:hover {
-  color: var(--white-hover);
-  border: 1px solid #666;
+  filter: brightness(0.99);
 }
 
-.container h1 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-.container h2 {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  font-weight: 300;
-}
-.container p {
-  font-size: 1.4rem;
-  font-weight: 300;
-  margin-left: 1rem;
+.container section:first-child {
+  display: flex;
+  align-self: stretch;
 }
 
-.comments {
+.container section:first-child img {
+  height: 7rem;
+  width: 7rem;
+  min-width: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.container section:first-child > div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+.container section:first-child > div > h1 {
+  font-weight: 400;
+  font-size: 2.2rem;
+  color: var(--blue);
+  margin-bottom: 1.5rem;
+}
+
+.container section:first-child > div > p {
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: var(--font2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.container section:last-child {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 0 0.5rem;
+}
+
+.container section:last-child > div {
   display: flex;
   align-items: center;
-  width: auto;
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: var(--font2);
+}
+
+.container section:last-child > div > svg {
+  margin-right: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.container section:last-child > p {
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: var(--font2);
 }
