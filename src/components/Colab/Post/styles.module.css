@@ -9,6 +9,7 @@
   margin-bottom: 2rem;
   background: var(--background);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .container:hover {
@@ -50,6 +51,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 3; /* number of lines to show */
   -webkit-box-orient: vertical;
+  max-width: 380px;
 }
 
 .container section:last-child {
@@ -57,7 +59,7 @@
   align-self: stretch;
   align-items: center;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: 3rem;
   padding: 0 0.5rem;
 }
 

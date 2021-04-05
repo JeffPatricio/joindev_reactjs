@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 1200px;
   align-self: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .search {
@@ -32,6 +32,15 @@
   font-weight: 300;
   color: var(--font1);
   font-weight: 300;
+}
+.search > .close {
+  display: flex;
+}
+
+.search > .close > svg {
+  cursor: pointer !important;
+  color: var(--font1);
+  font-size: 1.6rem;
 }
 
 .buttonSearch {

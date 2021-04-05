@@ -8,82 +8,110 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 10;
 }
 
-.container div{
-  background: #333;
-  border-radius: 4px;
-  color: #FFF;
-  width: 70.0rem;
-  height: auto;
-  padding: 3rem;
+.container > section {
+  background: var(--background);
+  border-radius: 30px;
+  color: #fff;
+  max-height: 95%;
+  max-width: 40%;
+  min-width: 40%;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  padding: 6rem 3rem;
 }
 
-.container div h1{
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+.container > section > div {
+  overflow: auto;
+  height: 100%;
 }
-.container div h2{
-  font-size: 1.2rem;
+
+.container > section > div > h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  color: var(--blue);
+  font-weight: 400;
+  text-align: center;
+}
+
+.container > section > div > h2 {
+  font-size: 1.4rem;
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: var(--font1);
 }
-.container div p{
+
+.container > section > div > h2 strong {
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.container div p {
   font-size: 1.2rem;
   font-weight: 300;
   margin-bottom: 1rem;
   text-align: justify;
 }
-.container .imageModalPost{
+.container .imageModalPost {
   background: red;
   width: 100%;
-  height: 20.0rem;
+  height: 20rem;
   padding: 0;
   margin: 0;
   overflow: hidden;
   margin-bottom: 1rem;
 }
-.container .imageModalPost img{
+.container .imageModalPost img {
   width: 100%;
 }
 
-.container div .contentAddComments{
+.container div .contentAddComments {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
-.container div .contentAddComments textarea{
-  background: #212121;
-  color: #FFF;
-  padding: 1rem;
+.container div .contentAddComments input {
+  background: var(--gray);
+  color: #fff;
+  padding: 0 1.5rem;
   border: 0;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  max-height: 4rem;
+  height: 4rem;
+  width: 100%;
+  color: var(--font1);
+  font-weight: 300;
 }
-.container div .contentAddComments button{
+
+.container div .contentAddComments button {
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid #007BDB;
-  color: #007BDB;
-  padding: 1rem 3rem;
+  border: 1px solid #007bdb;
+  color: #007bdb;
+  padding: 1rem;
+  margin-left: 0.5rem;
   border-radius: 8px;
-  font-size: 1.2rem;
-  max-width: 9.0rem;
+  font-size: 1.5rem;
 }
 
-.container div .contentComments{
-  padding: 0;
-  margin: 0;
+.container ::-webkit-scrollbar {
+  display: none;
+}
+
+.content {
   display: flex;
   flex-direction: column;
   width: 100%;
+  flex: 1;
 }

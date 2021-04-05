@@ -1,18 +1,56 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import styles from './styles.module.css';
 
-function Search() {
+function Search({ search, setSearch }) {
+  const inputSearchRef = React.useRef('');
   return (
-    <div className={styles.content}>
+    <form
+      className={styles.content}
+      onSubmit={(event) => {
+        event.preventDefault();
+        setSearch(inputSearchRef.current.value);
+      }}
+    >
       <div className={styles.search}>
-        <span className="iconify" data-icon="uil:search" data-inline="false" />
-        <input type="text" placeholder="Pesquisar por título ou descrição" />
+        {!search && (
+          <div>
+            <span
+              className="iconify"
+              data-icon="uil:search"
+              data-inline="false"
+            />
+          </div>
+        )}
+        {!!search && (
+          <div
+            className={styles.close}
+            onClick={() => {
+              setSearch('');
+              inputSearchRef.current.value = '';
+            }}
+          >
+            <span
+              className="iconify"
+              data-icon="ph:x-light"
+              data-inline="false"
+            />
+          </div>
+        )}
+        <input
+          ref={inputSearchRef}
+          type="text"
+          placeholder="Pesquisar por título ou descrição"
+        />
       </div>
 
-      <div className={styles.buttonSearch}>
+      <button
+        className={styles.buttonSearch}
+        onClick={() => setSearch(inputSearchRef.current.value)}
+      >
         <p>Buscar</p>
-      </div>
-    </div>
+      </button>
+    </form>
   );
 }
 

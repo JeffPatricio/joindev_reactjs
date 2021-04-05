@@ -43,6 +43,19 @@
   margin-right: 0.5rem;
 }
 
+.searchInfo > p:first-child {
+  font-weight: 300;
+  font-size: 2rem;
+  color: var(--font2);
+}
+
+.searchInfo > p:last-child {
+  font-weight: 300;
+  font-size: 1.6rem;
+  color: var(--font2);
+  margin-bottom: 3rem;
+}
+
 @media (max-width: 1024px) {
   .container {
     padding: 5rem;

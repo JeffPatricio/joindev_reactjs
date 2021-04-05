@@ -1,54 +1,62 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import styles from './styles.module.css';
-import imgModal from '../../../assets/imgModal.png';
+import * as Showdown from 'showdown';
+import ReactMde from 'react-mde';
 
-function Post() {
+function Post({ viewColab, ...props }, ref) {
+  const [show, setShow] = React.useState(false);
+
+  React.useImperativeHandle(
+    ref,
+    () => {
+      return {
+        close: () => {
+          setShow(false);
+        },
+        open: () => setShow(true),
+      };
+    },
+    []
+  );
+
+  if (!show) return <React.Fragment />;
+
+  const converter = new Showdown.Converter({
+    tables: true,
+    simplifiedAutoLink: true,
+    strikethrough: true,
+    tasklists: true,
+  });
+
   return (
-    <div className={styles.container}>
-      <div>
-        <h1>
-          Programação e Café ajudam a sociedade a evoluir conforme a demanda
-        </h1>
-        <h2>
-          Postado por <strong>Marcos Paulo</strong> há 12 horas.
-        </h2>
-        <div className={styles.imageModalPost}>
-          <img src={imgModal} alt=" " />
-        </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          vel orci eget odio auctor pretium id in quam. Nam dignissim metus quis
-          lacus pellentesque, in lacinia diam ornare. Aenean sed purus tincidunt
-          nunc malesuada suscipit vitae et urna. Ut ut felis quis sem
-          consectetur interdum. Sed ut venenatis justo. Quisque scelerisque
-          aliquet nibh, non lobortis velit tempus vitae. Maecenas sit amet
-          lectus urna. Sed non erat at metus vulputate dapibus et sed libero.
-          Mauris at turpis imperdiet, mattis sem in, malesuada ex. Morbi id
-          porttitor nunc, vel aliquam nulla. Nunc ultrices nec est et mattis.
-        </p>
-        <div className={styles.contentAddComments}>
+    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+      <section onClick={(e) => e.stopPropagation()}>
+        <div>
+          <h1>{viewColab.title}</h1>
+          <div className={styles.content}>
+            <ReactMde
+              l18n={{ write: '', preview: '' }}
+              minEditorHeight={400}
+              selectedTab="preview"
+              minPreviewHeight={400}
+              generateMarkdownPreview={() =>
+                Promise.resolve(converter.makeHtml(viewColab.text))
+              }
+            />
+          </div>
           <h2>
-            Comentar como <strong>andrefmandrade</strong>{' '}
+            Postado por <strong>{viewColab.name} </strong>
+            <small>há 12 horas.</small>
           </h2>
-          <textarea id="story" name="story" rows="5" cols="109" />
-          <button type="button">Comentar</button>
+          <div className={styles.contentAddComments}>
+            <input id="story" name="story" />
+            <button type="button">Comentar</button>
+          </div>
         </div>
-        <div className={styles.contentComments}>
-          <h2>
-            Comentar como <strong>andrefmandrade</strong>{' '}
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            vel orci eget odio auctor pretium id in quam. Nam dignissim metus
-            quis lacus pellentesque, in lacinia diam ornare. Aenean sed purus
-            tincidunt nunc malesuada suscipit vitae et urna. Ut ut felis quis
-            sem consectetur interdum. Sed ut venenatis justo.
-          </p>
-          <h2>Mencionar</h2>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }
 
-export default Post;
+export default React.forwardRef(Post);
