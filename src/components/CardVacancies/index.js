@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import logojoindev from '../../../assets/logojoindev.png';
+import logojoindev from '../../assets/logojoindev.png';
 
 function CardVacancies() {
   return (

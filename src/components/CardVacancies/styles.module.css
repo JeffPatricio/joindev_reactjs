@@ -1,0 +1,43 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--background);
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.content:hover {
+  transform: scale(1.05);
+  background: #fff;
+}
+
+.content img {
+  width: 5.5rem;
+  height: auto;
+}
+
+.content .bodyCard h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 1.2rem;
+  color: var(--font1);
+}
+
+.content .bottomCard h2,
+.content .bodyCard h2 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--font1);
+}
+
+.content .bottomCard h2 {
+  margin-top: 3rem;
+  text-align: right;
+}
