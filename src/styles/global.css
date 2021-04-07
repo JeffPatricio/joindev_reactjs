@@ -138,3 +138,37 @@ form select[errored='true'] {
 .mde-header-item button > svg {
   color: var(--font1);
 }
+
+.pagination {
+  display: flex;
+  list-style: none;
+  align-self: center;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+}
+
+.pagination li {
+  font-weight: 300;
+  color: var(--font1);
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.pagination li a {
+  padding: 1rem 1.5rem;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.pagination li:hover {
+  font-weight: 500;
+}
+
+.pagination li.active a {
+  border-radius: 3px;
+  border: 1px solid var(--blue);
+}

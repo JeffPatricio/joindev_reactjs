@@ -17,16 +17,18 @@ function Colab() {
   const [colabs, setColabs] = useState([]);
   const [search, setSearch] = useState('');
   const [viewColab, setViewColab] = useState(null);
-  // const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    axios.get('/colabs?search=' + search).then(({ data }) => {
+    axios.get('/colabs?search=' + search + '&page=' + page).then(({ data }) => {
       console.log(data);
       if (data.success) {
         setColabs(data.colabs);
+        setTotalPages(data.totalPages);
       }
     });
-  }, [search]);
+  }, [search, page]);
 
   useEffect(() => {
     if (!!viewColab) {
@@ -63,9 +65,12 @@ function Colab() {
           previousLabel="<"
           nextLabel=">"
           breakLabel="..."
-          pageCount={100}
+          pageCount={totalPages}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
+          onPageChange={(selectedItem) => {
+            setPage(selectedItem.selected + 1);
+          }}
           containerClassName="pagination"
           activeClassName="active"
         />
