@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './styles.module.css';
 import logojoindev from '../../assets/logojoindev.png';
 
-function CardVacancies() {
+function CardVacancies({ onClick }) {
   return (
-    <div className={styles.content}>
+    <div className={styles.content} onClick={onClick}>
       <img src={logojoindev} alt="" />
       <div className={styles.bodyCard}>
         <h1>Analista de Sistemas Sênior</h1>

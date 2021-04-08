@@ -4,6 +4,8 @@ import styles from './styles.module.css';
 import * as Showdown from 'showdown';
 import ReactMde from 'react-mde';
 
+import MDEditor from '@uiw/react-md-editor';
+
 function Post({ viewColab, ...props }, ref) {
   const [show, setShow] = React.useState(false);
 
@@ -45,6 +47,9 @@ function Post({ viewColab, ...props }, ref) {
               }
             />
           </div>
+          <MDEditor.Markdown
+            source={Promise.resolve(converter.makeHtml(viewColab.text))}
+          />
           <h2>
             Postado por <strong>{viewColab.name} </strong>
             <small>há 12 horas.</small>

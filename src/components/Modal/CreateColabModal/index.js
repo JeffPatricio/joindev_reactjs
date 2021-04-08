@@ -22,6 +22,8 @@ import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { useHistory } from 'react-router-dom';
 
+import MDEditor from '@uiw/react-md-editor';
+
 const schema = Yup.object().shape({
   title: Yup.string().required('Campo obrigatório'),
   text: Yup.string().required('Campo obrigatório'),
@@ -155,6 +157,9 @@ function CreatePostModal({ ...props }, ref) {
                 onClick={() => setShow(false)}
               />
             </div>
+
+            <MDEditor value={value} onChange={setValue} />
+            <MDEditor.Markdown source={value} />
           </Form>
         </div>
       </section>

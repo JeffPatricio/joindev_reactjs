@@ -3,9 +3,11 @@ import HeaderPanel from '../../components/HeaderPanel';
 import Button from '../../components/Button';
 import styles from './styles.module.css';
 import CardVacancies from '../../components/CardVacancies';
+import Vacancie from '../../components/Modal/Vacancie';
 
 function Vacancies() {
   const formRef = useRef(null);
+  const modalViewRef = useRef(null);
   const buttonRef = useRef(null);
   const [search, setSearch] = React.useState('');
 
@@ -18,6 +20,7 @@ function Vacancies() {
     <div className={styles.container}>
       <HeaderPanel />
       <div>
+        <Vacancie ref={modalViewRef} />
         <p>Vagas</p>
         <button>
           <span
@@ -62,7 +65,7 @@ function Vacancies() {
           <Button ref={buttonRef} type="submit" text="Buscar" />
         </form>
         <div className={styles.containerlist}>
-          <CardVacancies />
+          <CardVacancies onClick={() => modalViewRef.current.open()} />
           <CardVacancies />
           <CardVacancies />
           <CardVacancies />
