@@ -45,6 +45,10 @@
   font-size: 1.6rem;
 }
 
+.container > section > div > p:last-child {
+  margin-bottom: 2rem;
+}
+
 .container > section > div > div {
   display: flex;
   align-self: stretch;

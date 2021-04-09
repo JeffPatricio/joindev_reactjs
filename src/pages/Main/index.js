@@ -16,7 +16,12 @@ function Main({ match }) {
           component={() => <Redirect to={`${match.url}/colab`} />}
         />
         <Route exact path={`${match.url}/colab`} component={Colab} />
-        <Route exact path={`${match.url}/jobs`} component={Jobs} />
+        <Route
+          exact
+          path={`${match.url}/jobs`}
+          component={() => <Redirect to={`${match.url}/jobs/1`} />}
+        />
+        <Route exact path={`${match.url}/jobs/:page`} component={Jobs} />
       </main>
     </div>
   );
