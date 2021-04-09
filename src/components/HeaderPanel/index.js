@@ -80,7 +80,7 @@ function HeaderPanel() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/settings/vacancies">
+            <NavLink to="/settings/jobs">
               <span
                 className="iconify"
                 data-icon="ph:briefcase-light"

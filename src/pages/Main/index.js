@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import styles from './styles.module.css';
 import Menu from '../../components/Menu';
 import Colab from '../Colab';
-import Vacancies from '../Vacancies';
+import Jobs from '../Jobs';
 
 function Main({ match }) {
   return (
@@ -16,7 +16,7 @@ function Main({ match }) {
           component={() => <Redirect to={`${match.url}/colab`} />}
         />
         <Route exact path={`${match.url}/colab`} component={Colab} />
-        <Route exact path={`${match.url}/vacancies`} component={Vacancies} />
+        <Route exact path={`${match.url}/jobs`} component={Jobs} />
       </main>
     </div>
   );

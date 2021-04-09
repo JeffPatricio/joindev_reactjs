@@ -12,7 +12,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import FormResetPassword from '../pages/FormResetPassword';
 import ActivateAccount from '../pages/ActivateAccount';
 import Events from '../pages/Events';
-import Vacancies from '../pages/Vacancies';
+import Jobs from '../pages/Jobs';
 import Main from '../pages/Main';
 import PrivateRoute from './PrivateRoute';
 
@@ -64,12 +64,7 @@ const Routes = ({ authUser }) => {
           authUser={authUser}
           component={Events}
         />
-        <PrivateRoute
-          exact
-          path="/vacancies"
-          authUser={authUser}
-          component={Vacancies}
-        />
+        <PrivateRoute exact path="/jobs" authUser={authUser} component={Jobs} />
       </Switch>
     </Router>
   );

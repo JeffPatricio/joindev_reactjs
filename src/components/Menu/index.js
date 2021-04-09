@@ -33,7 +33,7 @@ function Menu() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/main/vacancies">
+            <NavLink to="/main/jobs">
               <span
                 className="iconify"
                 data-icon="ph:briefcase"

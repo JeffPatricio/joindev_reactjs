@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import logo from './joindev.svg';
 
 function Vacancie({ viewVacancie, ...props }, ref) {
-  const [show, setShow] = React.useState(true);
+  const [show, setShow] = React.useState(false);
 
   React.useImperativeHandle(
     ref,

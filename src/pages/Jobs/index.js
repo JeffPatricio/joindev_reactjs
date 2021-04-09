@@ -4,10 +4,12 @@ import Button from '../../components/Button';
 import styles from './styles.module.css';
 import CardVacancies from '../../components/CardVacancies';
 import Vacancie from '../../components/Modal/Vacancie';
+import CreateJob from '../../components/Modal/CreateJob';
 
-function Vacancies() {
+function Jobs() {
   const formRef = useRef(null);
   const modalViewRef = useRef(null);
+  const modalCreateRef = useRef(null);
   const buttonRef = useRef(null);
   const [search, setSearch] = React.useState('');
 
@@ -20,6 +22,7 @@ function Vacancies() {
     <div className={styles.container}>
       <HeaderPanel />
       <div>
+        <CreateJob ref={modalCreateRef} />
         <Vacancie ref={modalViewRef} />
         <p>Vagas</p>
         <button>
@@ -86,4 +89,4 @@ function Vacancies() {
   );
 }
 
-export default Vacancies;
+export default Jobs;
