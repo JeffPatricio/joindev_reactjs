@@ -16,7 +16,7 @@ import { Form } from '@unform/web';
 import axios from 'axios';
 import styles from './styles.module.css';
 
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const schema = Yup.object().shape({
   title: Yup.string().required(''),
@@ -30,8 +30,11 @@ function CreateJob({ ...props }, ref) {
   const formRef = useRef(null);
   const buttonRef = useRef(null);
   const { showToast } = useToast();
-  const [show, setShow] = useState(true);
-  // const history = useHistory();
+  const [show, setShow] = useState(false);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [state, setState] = useState('');
+  const history = useHistory();
 
   useImperativeHandle(
     ref,
@@ -45,6 +48,26 @@ function CreateJob({ ...props }, ref) {
     },
     []
   );
+
+  React.useEffect(() => {
+    axios
+      .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+      .then(({ data }) => {
+        setStates(data);
+      })
+      .catch(() => {});
+  }, []);
+
+  React.useEffect(() => {
+    axios
+      .get(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/distritos`
+      )
+      .then(({ data }) => {
+        setCities(data);
+      })
+      .catch(() => {});
+  }, [state]);
 
   async function handleSubmit(data) {
     try {
@@ -64,9 +87,14 @@ function CreateJob({ ...props }, ref) {
             showToast(message, 'error');
             return;
           }
-
           showToast(message, 'success');
           setShow(false);
+          history.push({
+            pathname: '/main/jobs',
+            state: {
+              reload: true,
+            },
+          });
         })
         .catch(() => {
           buttonRef.current.removeLoad();
@@ -94,8 +122,26 @@ function CreateJob({ ...props }, ref) {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input type="text" placeholder="Título" name="title" autoFocus />
             <Input type="text" placeholder="Empresa" name="company" />
-            <Input type="text" placeholder="Estado" name="state" />
-            <Input type="text" placeholder="Cidade" name="city" />
+            <select
+              placeholder="Estado"
+              name="state"
+              onChange={(e) => setState(e.currentTarget.value)}
+            >
+              <option disabled selected>
+                Selecione um estado
+              </option>
+              {states.map((state) => (
+                <option value={state.sigla}>{state.nome}</option>
+              ))}
+            </select>
+            <select placeholder="Cidade" name="city">
+              <option disabled selected>
+                Selecione uma cidade
+              </option>
+              {cities.map((city) => (
+                <option value={city.nome}>{city.nome}</option>
+              ))}
+            </select>
             <Input type="text" placeholder="Contato" name="contact" />
             <Textarea type="text" placeholder="Detalhes" name="details" />
 

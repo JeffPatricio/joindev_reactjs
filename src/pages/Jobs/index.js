@@ -21,6 +21,7 @@ function Jobs({ match, history }) {
   const [search, setSearch] = React.useState('');
   const [totalPages, setTotalPages] = React.useState(1);
   const [jobs, setJobs] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -29,12 +30,20 @@ function Jobs({ match, history }) {
 
   React.useEffect(() => {
     (async () => {
-      axios.get(`/jobs?page=${page}&search=${search}`).then(({ data }) => {
-        if (data.success) {
-          setJobs(data.jobs);
-          setTotalPages(data.totalPages);
-        }
-      });
+      setLoading(true);
+      axios
+        .get(`/jobs?page=${page}&search=${search}`)
+        .then(({ data }) => {
+          console.log(data);
+          if (data.success) {
+            setJobs(data.jobs);
+            setTotalPages(data.totalPages);
+            setLoading(false);
+          }
+        })
+        .catch(() => {
+          setLoading(false);
+        });
     })();
   }, [page, search]);
 
@@ -45,7 +54,7 @@ function Jobs({ match, history }) {
         <CreateJob ref={modalCreateRef} />
         <Job ref={modalViewRef} job={jobView} />
         <p>Vagas</p>
-        <button>
+        <button onClick={() => modalCreateRef.current.open()}>
           <span
             className="iconify"
             data-icon="ph:plus-light"
@@ -94,18 +103,24 @@ function Jobs({ match, history }) {
             }}
           />
         </form>
-        {!!search && (
+        {loading && (
+          <div className={styles.searchInfo}>
+            <p>Carregando</p>
+            <p />
+          </div>
+        )}
+        {!loading && !!search && (
           <div className={styles.searchInfo}>
             <p>Resultados da pesquisa</p>
             <p>49 resultados encontrados</p>
           </div>
         )}
-        {!jobs.length && !search && (
+        {!loading && !jobs.length && !search && (
           <div className={styles.emptyList}>
             <h4>Não há vagas a serem apresentadas</h4>
           </div>
         )}
-        {!!jobs.length && (
+        {!loading && !!jobs.length && (
           <div className={styles.containerlist}>
             {jobs.map((job, index) => (
               <CardVacancies
