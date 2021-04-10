@@ -6,7 +6,8 @@
   padding: 2.5rem 2rem;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  margin-right: 2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
   margin-bottom: 2rem;
   cursor: pointer;
   transition: 0.2s;
@@ -29,6 +30,10 @@
   margin-top: 2rem;
   margin-bottom: 1.2rem;
   color: var(--font1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 18rem;
 }
 
 .content .bottomCard h2,
@@ -36,9 +41,32 @@
   font-size: 1.4rem;
   font-weight: 300;
   color: var(--font1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 18rem;
+}
+.content .bodyCard h2 {
+  max-width: 150px;
 }
 
 .content .bottomCard h2 {
   margin-top: 3rem;
   text-align: right;
+}
+
+@media (max-width: 425px) {
+  .content {
+    min-width: 19rem;
+    width: 19rem;
+  }
+
+  .content .bodyCard h1 {
+    max-width: 14.5rem;
+  }
+
+  .content .bottomCard h2,
+  .content .bodyCard h2 {
+    max-width: 14.5rem;
+  }
 }

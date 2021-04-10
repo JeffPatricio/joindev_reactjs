@@ -152,3 +152,9 @@
   color: var(--font2);
   margin-bottom: 2rem;
 }
+
+@media (max-width: 425px) {
+  .search {
+    width: 80%;
+  }
+}

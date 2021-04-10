@@ -18,6 +18,7 @@ function Jobs({ match, history }) {
   const modalCreateRef = useRef(null);
   const buttonRef = useRef(null);
   const [jobView, setJobView] = React.useState(null);
+  const [searchCount, setSearchCount] = React.useState('');
   const [search, setSearch] = React.useState('');
   const [totalPages, setTotalPages] = React.useState(1);
   const [jobs, setJobs] = React.useState([]);
@@ -39,13 +40,14 @@ function Jobs({ match, history }) {
             setJobs(data.jobs);
             setTotalPages(data.totalPages);
             setLoading(false);
+            setSearchCount(data.count);
           }
         })
         .catch(() => {
           setLoading(false);
         });
     })();
-  }, [page, search]);
+  }, [search, page]);
 
   return (
     <div className={styles.container}>
@@ -99,20 +101,21 @@ function Jobs({ match, history }) {
             type="submit"
             text="Buscar"
             onClick={() => {
+              history.push(`/main/jobs/1`);
               setSearch(inputSearchRef.current.value);
             }}
           />
         </form>
         {loading && (
           <div className={styles.searchInfo}>
-            <p>Carregando</p>
+            <p>Carregando...</p>
             <p />
           </div>
         )}
         {!loading && !!search && (
           <div className={styles.searchInfo}>
             <p>Resultados da pesquisa</p>
-            <p>49 resultados encontrados</p>
+            <p>{searchCount} resultados encontrados</p>
           </div>
         )}
         {!loading && !jobs.length && !search && (
@@ -134,11 +137,12 @@ function Jobs({ match, history }) {
             ))}
           </div>
         )}
-        {!!jobs.length && (
+        {!!jobs.length && !loading && (
           <ReactPaginate
             previousLabel="<"
             nextLabel=">"
             breakLabel="..."
+            initialPage={page - 1}
             pageCount={totalPages}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}

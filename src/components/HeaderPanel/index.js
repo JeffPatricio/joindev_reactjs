@@ -3,9 +3,11 @@
 import React, { useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './styles.module.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 function HeaderPanel() {
   const dropdownRef = useRef();
+  const { authUser, signOut } = useAuth();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -27,24 +29,24 @@ function HeaderPanel() {
   return (
     <header className={styles.container}>
       <p>
-        Olá <span>Marcos Paulo</span>
+        Olá <span>{authUser.name}</span>
       </p>
       <img
         alt=""
         id="img_profile"
-        src="https://images.unsplash.com/photo-1614788620367-6180c4122c82?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+        src={authUser.photo || 'https://i.ibb.co/dDpxVpV/Group-50.png'}
         onClick={toggleAttrDropdown}
       />
       <div ref={dropdownRef}>
         <header>
           <img
             alt=""
-            src="https://images.unsplash.com/photo-1614788620367-6180c4122c82?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+            src={authUser.photo || 'https://i.ibb.co/dDpxVpV/Group-50.png'}
           />
           <section>
             <div>
-              <p>Marcos Paulo</p>
-              <p>marcospauloteste@gmail.com</p>
+              <p>{authUser.name}</p>
+              <p>{authUser.email}</p>
             </div>
           </section>
         </header>
@@ -100,7 +102,7 @@ function HeaderPanel() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/settings/events">
+            <NavLink to="/" onClick={() => signOut()}>
               <span
                 className="iconify"
                 data-icon="ph:sign-out-light"

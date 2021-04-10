@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import styles from './styles.module.css';
 import logojoindev from '../../assets/logojoindev.png';
-
 import 'moment/locale/pt-br';
 
 moment.locale('pt-br');

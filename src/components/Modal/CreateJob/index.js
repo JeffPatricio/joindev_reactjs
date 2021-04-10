@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, {
@@ -8,6 +9,7 @@ import React, {
   useRef,
 } from 'react';
 import Input from '../../Input';
+import Select from '../../Select';
 import Textarea from '../../Textarea';
 import Button from '../../Button';
 import { useToast } from '../../../contexts/ToastContext';
@@ -22,6 +24,7 @@ const schema = Yup.object().shape({
   title: Yup.string().required(''),
   company: Yup.string().required(''),
   city: Yup.string().required(''),
+  state: Yup.string().required(''),
   contact: Yup.string().required(''),
   details: Yup.string().required(''),
 });
@@ -53,7 +56,14 @@ function CreateJob({ ...props }, ref) {
     axios
       .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
       .then(({ data }) => {
-        setStates(data);
+        const ordened = data.sort((a, b) => {
+          return a.nome.toLowerCase() < b.nome.toLowerCase()
+            ? -1
+            : a.nome.toLowerCase() > b.nome.toLowerCase()
+            ? 1
+            : 0;
+        });
+        setStates(ordened);
       })
       .catch(() => {});
   }, []);
@@ -64,10 +74,27 @@ function CreateJob({ ...props }, ref) {
         `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/distritos`
       )
       .then(({ data }) => {
-        setCities(data);
+        const ordened = data.sort((a, b) => {
+          return a.nome.toLowerCase() < b.nome.toLowerCase()
+            ? -1
+            : a.nome.toLowerCase() > b.nome.toLowerCase()
+            ? 1
+            : 0;
+        });
+        setCities(ordened);
       })
       .catch(() => {});
   }, [state]);
+
+  React.useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27 && show) {
+        setShow(false);
+      }
+    };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [show]);
 
   async function handleSubmit(data) {
     try {
@@ -79,7 +106,7 @@ function CreateJob({ ...props }, ref) {
       buttonRef.current.addLoad();
 
       axios
-        .post('/jobs', data)
+        .post('/jobs', { ...data, city: `${data.city} - ${data.state}` })
         .then(({ data }) => {
           const { success, message } = data;
           buttonRef.current.removeLoad();
@@ -115,33 +142,32 @@ function CreateJob({ ...props }, ref) {
   if (!show) return <Fragment />;
 
   return (
-    <div className={styles.container} {...props}>
-      <section>
+    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+      <section onClick={(e) => e.stopPropagation()}>
         <div onClick={(e) => e.stopPropagation()}>
           <p>Adicionar Vaga</p>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input type="text" placeholder="Título" name="title" autoFocus />
             <Input type="text" placeholder="Empresa" name="company" />
-            <select
+            <Select
+              graycolor={state === '' ? 'true' : ''}
               placeholder="Estado"
               name="state"
+              options={states.map((state) => ({
+                value: state.sigla,
+                label: state.nome,
+              }))}
               onChange={(e) => setState(e.currentTarget.value)}
-            >
-              <option disabled selected>
-                Selecione um estado
-              </option>
-              {states.map((state) => (
-                <option value={state.sigla}>{state.nome}</option>
-              ))}
-            </select>
-            <select placeholder="Cidade" name="city">
-              <option disabled selected>
-                Selecione uma cidade
-              </option>
-              {cities.map((city) => (
-                <option value={city.nome}>{city.nome}</option>
-              ))}
-            </select>
+            />
+            <Select
+              disabled={state === ''}
+              placeholder="Cidade"
+              name="city"
+              options={cities.map((city) => ({
+                value: city.nome,
+                label: city.nome,
+              }))}
+            />
             <Input type="text" placeholder="Contato" name="contact" />
             <Textarea type="text" placeholder="Detalhes" name="details" />
 

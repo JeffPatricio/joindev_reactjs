@@ -65,7 +65,8 @@ body {
 body,
 input,
 textarea,
-button {
+button,
+select {
   font: 400 16px 'Mulish', sans-serif;
 }
 

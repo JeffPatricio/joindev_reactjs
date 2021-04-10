@@ -9,3 +9,9 @@
   width: 100%;
   max-width: calc(100vw - 220px);
 }
+
+@media (max-width: 768px) {
+  .container > main {
+    max-width: 100%;
+  }
+}

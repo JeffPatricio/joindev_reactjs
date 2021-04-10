@@ -16,11 +16,11 @@
   background: var(--background);
   border-radius: 30px;
   color: #fff;
-  padding: 3.5rem 2rem 3rem 2rem;
+  padding: 3.5rem 2.5rem 3rem 2.5rem;
   text-align: center;
   max-height: 95%;
-  max-width: 33%;
-  min-width: 33%;
+  max-width: 32%;
+  min-width: 32%;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
 }
 
@@ -63,8 +63,14 @@
   margin-bottom: 1rem;
   margin-top: 0.5rem;
   color: var(--font1);
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 0 1rem;
   width: 100%;
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.container > section > div > form > select[value=' '] {
+  color: #888;
 }
 
 .container > section > div > form > input::placeholder,
@@ -119,4 +125,20 @@
 
 .container ::-webkit-scrollbar {
   display: none;
+}
+
+select:invalid {
+  color: gray;
+}
+
+select[graycolor='true'] {
+  color: #888 !important;
+}
+
+@media (max-width: 425px) {
+  .container > section {
+    max-width: 90%;
+    min-width: 90%;
+    max-height: 70%;
+  }
 }

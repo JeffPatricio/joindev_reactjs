@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-plusplus */
 import React, { useEffect, useRef, Fragment } from 'react';
@@ -5,6 +6,7 @@ import { useField } from '@unform/core';
 
 const SelectUnform = ({ name, options = [], label, ...rest }) => {
   const inputRef = useRef(null);
+  const [v, setV] = React.useState('');
   const {
     fieldName,
     defaultValue = rest.multiple ? [] : '',
@@ -39,10 +41,17 @@ const SelectUnform = ({ name, options = [], label, ...rest }) => {
     <Fragment>
       {!!label && <label>{label}</label>}
       <select
-        errored={error ? 'true' : ''}
+        errored={error || error === '' ? 'true' : ''}
         {...rest}
         ref={inputRef}
+        graycolor={v === '' ? 'true' : ''}
         defaultValue={defaultValue}
+        onChange={(e) => {
+          setV(e.currentTarget.value);
+          if (!!rest.onChange) {
+            rest.onChange(e);
+          }
+        }}
       >
         {!!rest.placeholder && (
           <option value="">{rest.placeholder || ''}</option>

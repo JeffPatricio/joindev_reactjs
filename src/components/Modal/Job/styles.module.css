@@ -89,3 +89,11 @@
 .container ::-webkit-scrollbar {
   display: none;
 }
+
+@media (max-width: 425px) {
+  .container > section {
+    max-width: 95%;
+    min-width: 95%;
+    max-height: 85%;
+  }
+}

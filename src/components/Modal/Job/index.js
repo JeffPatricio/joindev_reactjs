@@ -43,7 +43,7 @@ function Job({ viewVacancie, job, ...props }, ref) {
             <div>
               <h1>{job.title}</h1>
               <h2>{job.company}</h2>
-              <h2>{job.title}</h2>
+              <h2>{job.city}</h2>
               <small>Anunciada {moment(job.createdAt).fromNow()}</small>
             </div>
           </div>
