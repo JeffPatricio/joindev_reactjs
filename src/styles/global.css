@@ -51,12 +51,6 @@ html {
   }
 }
 
-@media (max-width: 1080px) {
-  html {
-    font-size: 56.25%; /* 9px */
-  }
-}
-
 body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
@@ -173,4 +167,10 @@ form select[errored='true'] {
 .pagination li.active a {
   border-radius: 3px;
   border: 1px solid var(--blue);
+}
+
+@media (max-width: 425px) {
+  .pagination {
+    margin-bottom: 5rem;
+  }
 }

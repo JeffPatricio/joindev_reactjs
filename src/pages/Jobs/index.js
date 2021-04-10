@@ -35,7 +35,6 @@ function Jobs({ match, history }) {
       axios
         .get(`/jobs?page=${page}&search=${search}`)
         .then(({ data }) => {
-          console.log(data);
           if (data.success) {
             setJobs(data.jobs);
             setTotalPages(data.totalPages);

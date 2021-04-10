@@ -56,11 +56,28 @@
   display: none;
 }
 
+:global(label[for='check_menu']) {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .container {
     transition: all 0.2s linear;
     left: -250px;
     position: absolute;
+    z-index: 10;
+  }
+
+  .container ul li a {
+    font-size: 2rem;
+  }
+
+  :global(label[for='check_menu']) {
+    display: block;
+    position: absolute;
+    top: 4rem;
+    left: 2rem;
+    font-size: 2.4rem;
     z-index: 10;
   }
 
@@ -76,5 +93,11 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 8;
+  }
+}
+
+@media (max-width: 425px) {
+  .container ul li a {
+    font-size: 2.2rem;
   }
 }

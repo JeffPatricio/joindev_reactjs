@@ -10,6 +10,9 @@ function Menu() {
   return (
     <>
       <input ref={checkboxRef} type="checkbox" id="check_menu" />
+      <label htmlFor="check_menu">
+        <span className="iconify" data-icon="ph:list" data-inline="false" />
+      </label>
       <section
         id="backdrop"
         onClick={() => {
@@ -23,7 +26,12 @@ function Menu() {
 
         <ul>
           <li>
-            <NavLink to="/main/colab">
+            <NavLink
+              to="/main/colab"
+              onClick={() => {
+                checkboxRef.current.checked = false;
+              }}
+            >
               <span
                 className="iconify"
                 data-icon="ph:book-open"
@@ -33,7 +41,12 @@ function Menu() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/main/jobs">
+            <NavLink
+              to="/main/jobs"
+              onClick={() => {
+                checkboxRef.current.checked = false;
+              }}
+            >
               <span
                 className="iconify"
                 data-icon="ph:briefcase"
@@ -43,7 +56,12 @@ function Menu() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/main/events">
+            <NavLink
+              to="/main/events"
+              onClick={() => {
+                checkboxRef.current.checked = false;
+              }}
+            >
               <span
                 className="iconify"
                 data-icon="ph:calendar-blank"
