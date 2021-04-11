@@ -49,6 +49,16 @@ function CreatePostModal({ ...props }, ref) {
     tasklists: true,
   });
 
+  React.useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27 && show) {
+        setShow(false);
+      }
+    };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [show]);
+
   useImperativeHandle(
     ref,
     () => {
@@ -123,8 +133,8 @@ function CreatePostModal({ ...props }, ref) {
   if (!show) return <Fragment />;
 
   return (
-    <div className={styles.container} {...props}>
-      <section>
+    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+      <section onClick={(e) => e.stopPropagation()}>
         <div onClick={(e) => e.stopPropagation()}>
           <p>Adicionar postagem</p>
           <Form ref={formRef} onSubmit={handleSubmit}>

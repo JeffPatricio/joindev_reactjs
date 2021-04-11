@@ -13,9 +13,14 @@ function Main({ match }) {
         <Route
           exact
           path={`${match.url}/`}
-          component={() => <Redirect to={`${match.url}/colab`} />}
+          component={() => <Redirect to={`${match.url}/colab/1`} />}
         />
-        <Route exact path={`${match.url}/colab`} component={Colab} />
+        <Route
+          exact
+          path={`${match.url}/colab`}
+          component={() => <Redirect to={`${match.url}/colab/1`} />}
+        />
+        <Route exact path={`${match.url}/colab/:page`} component={Colab} />
         <Route
           exact
           path={`${match.url}/jobs`}

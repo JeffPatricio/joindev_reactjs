@@ -11,23 +11,33 @@ import CreateColabModal from '../../components/Modal/CreateColabModal';
 import PostModal from '../../components/Modal/PostModal';
 import ReactPaginate from 'react-paginate';
 
-function Colab() {
+function Colab({ history, match }) {
+  const { page } = match.params;
   const refModalCreate = useRef(null);
   const refModalView = useRef(null);
   const [colabs, setColabs] = useState([]);
   const [search, setSearch] = useState('');
   const [viewColab, setViewColab] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
-  const [page, setPage] = useState(1);
+  const [loading, setLoading] = React.useState(true);
+  const [searchCount, setSearchCount] = React.useState('');
 
   useEffect(() => {
-    axios.get('/colabs?search=' + search + '&page=' + page).then(({ data }) => {
-      console.log(data);
-      if (data.success) {
-        setColabs(data.colabs);
-        setTotalPages(data.totalPages);
-      }
-    });
+    setLoading(true);
+    axios
+      .get('/colabs?search=' + search + '&page=' + page)
+      .then(({ data }) => {
+        console.log(data);
+        if (data.success) {
+          setColabs(data.colabs);
+          setTotalPages(data.totalPages);
+          setLoading(false);
+          setSearchCount(data.count);
+        }
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   }, [search, page]);
 
   useEffect(() => {
@@ -52,28 +62,48 @@ function Colab() {
           Criar postagem
         </button>
         <Search setSearch={setSearch} search={search} />
-        {!!search && (
+        {loading && (
           <div className={styles.searchInfo}>
-            <p>Resultados da pesquisa</p>
-            <p>49 resultados encontrados</p>
+            <p>Carregando...</p>
+            <p />
           </div>
         )}
-        {colabs.map((colab, index) => (
-          <Post colab={colab} key={index} onClick={() => setViewColab(colab)} />
-        ))}
-        <ReactPaginate
-          previousLabel="<"
-          nextLabel=">"
-          breakLabel="..."
-          pageCount={totalPages}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={(selectedItem) => {
-            setPage(selectedItem.selected + 1);
-          }}
-          containerClassName="pagination"
-          activeClassName="active"
-        />
+        {!loading && !!search && (
+          <div className={styles.searchInfo}>
+            <p>Resultados da pesquisa</p>
+            <p>{searchCount} resultados encontrados</p>
+          </div>
+        )}
+        {!loading && !colabs.length && !search && (
+          <div className={styles.emptyList}>
+            <h4>Não há colabs a serem apresentadas</h4>
+          </div>
+        )}
+        {!loading &&
+          !!colabs.length &&
+          colabs.map((colab, index) => (
+            <Post
+              colab={colab}
+              key={index}
+              onClick={() => setViewColab(colab)}
+            />
+          ))}
+        {!!colabs.length && !loading && (
+          <ReactPaginate
+            previousLabel="<"
+            nextLabel=">"
+            breakLabel="..."
+            initialPage={page - 1}
+            pageCount={totalPages}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={(selectedItem) => {
+              history.push(`/main/colab/${selectedItem.selected + 1}`);
+            }}
+            containerClassName="pagination"
+            activeClassName="active"
+          />
+        )}
       </div>
     </div>
   );

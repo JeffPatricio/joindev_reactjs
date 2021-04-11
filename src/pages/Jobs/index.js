@@ -146,7 +146,6 @@ function Jobs({ match, history }) {
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={(selectedItem) => {
-              divListRef.current.scrollTo(0, 0);
               history.push(`/main/jobs/${selectedItem.selected + 1}`);
             }}
             containerClassName="pagination"
