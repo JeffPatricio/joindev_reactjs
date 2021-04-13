@@ -48,7 +48,7 @@ function Job({ viewVacancie, job, ...props }, ref) {
             </div>
           </div>
           <h3>Detalhes</h3>
-          <p>{job.details}</p>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{job.details}</p>
           <h3>Contato</h3>
           <p>{job.contact}</p>
         </div>

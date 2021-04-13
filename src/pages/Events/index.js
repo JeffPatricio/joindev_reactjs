@@ -1,48 +1,158 @@
-import React from 'react';
-import styles from './styles.module.css';
-import Menu from '../../components/Menu';
+/* eslint-disable react/no-array-index-key */
+import React, { useRef } from 'react';
 import HeaderPanel from '../../components/HeaderPanel';
-import Search from '../../components/Events/Search';
-import CardEvents from '../../components/Events/CardEvents';
+import Button from '../../components/Button';
+import styles from './styles.module.css';
+import CardEvent from '../../components/CardEvent';
+import Job from '../../components/Modal/Job';
+import CreateJob from '../../components/Modal/CreateJob';
+import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 
-// import CreateEventModal from '../../components/Modal/CreateEventModal';
+function Events({ match, history }) {
+  const { page } = match.params;
+  const inputSearchRef = useRef(null);
+  const divListRef = useRef(null);
+  const formRef = useRef(null);
+  const modalViewRef = useRef(null);
+  const modalCreateRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [eventView, setEventView] = React.useState(null);
+  const [searchCount, setSearchCount] = React.useState('');
+  const [search, setSearch] = React.useState('');
+  const [totalPages, setTotalPages] = React.useState(1);
+  const [events, setEvents] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
-// import EventModal from '../../components/Modal/EventModal';
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log('handle');
+  }
 
-function Events() {
+  React.useEffect(() => {
+    (async () => {
+      setLoading(true);
+      axios
+        .get(`/events?page=${page}&search=${search}`)
+        .then(({ data }) => {
+          if (data.success) {
+            setEvents(data.events);
+            setTotalPages(data.totalPages);
+            setLoading(false);
+            setSearchCount(data.count);
+          }
+        })
+        .catch(() => {
+          setLoading(false);
+        });
+    })();
+  }, [search, page]);
+
   return (
     <div className={styles.container}>
-      <Menu />
-      <div className={styles.panelColab}>
-        {/* A tag CreateEventModal é quando o usuário deseja criar um novo evento.
-        <CreateEventModal /> */}
-
-        {/* A tag EventModal é quando o usuário clica para visualizar algum evento.
-        <EventModal /> */}
-        <HeaderPanel />
-        <div className={styles.contentPanel}>
-          <Search />
-
-          <div className={styles.suggestedEvents}>
-            <h3>Eventos Sugeridos</h3>
-            <div className={styles.gridEvents}>
-              <CardEvents />
-              <CardEvents />
-              <CardEvents />
-            </div>
+      <HeaderPanel />
+      <div ref={divListRef}>
+        <CreateJob ref={modalCreateRef} />
+        <Job ref={modalViewRef} job={eventView} />
+        <p>Eventos</p>
+        <button onClick={() => modalCreateRef.current.open()}>
+          <span
+            className="iconify"
+            data-icon="ph:plus-light"
+            data-inline="false"
+          />
+          Criar evento
+        </button>
+        <form ref={formRef} onSubmit={handleSubmit}>
+          <div className={styles.search}>
+            {!search && (
+              <div>
+                <span
+                  className="iconify"
+                  data-icon="uil:search"
+                  data-inline="false"
+                />
+              </div>
+            )}
+            {!!search && (
+              <div
+                className={styles.close}
+                onClick={() => {
+                  setSearch('');
+                  inputSearchRef.current.value = '';
+                }}
+              >
+                <span
+                  className="iconify"
+                  data-icon="ph:x-light"
+                  data-inline="false"
+                />
+              </div>
+            )}
+            <input
+              type="text"
+              ref={inputSearchRef}
+              placeholder="Pesquisar por título ou descrição"
+            />
           </div>
-
-          <div className={styles.suggestedEvents}>
-            <h3>Todos os Eventos</h3>
-            <div className={styles.gridEvents}>
-              <CardEvents />
-              <CardEvents />
-              <CardEvents />
-            </div>
+          <Button
+            ref={buttonRef}
+            type="submit"
+            text="Buscar"
+            onClick={() => {
+              history.push(`/main/events/1`);
+              setSearch(inputSearchRef.current.value);
+            }}
+          />
+        </form>
+        {loading && (
+          <div className={styles.searchInfo}>
+            <p>Carregando...</p>
+            <p />
           </div>
-        </div>
+        )}
+        {!loading && !!search && (
+          <div className={styles.searchInfo}>
+            <p>Resultados da pesquisa</p>
+            <p>{searchCount} resultados encontrados</p>
+          </div>
+        )}
+        {!loading && !events.length && !search && (
+          <div className={styles.emptyList}>
+            <h4>Não há eventos a serem apresentados</h4>
+          </div>
+        )}
+        {!loading && !!events.length && (
+          <div className={styles.containerlist}>
+            {events.map((event, index) => (
+              <CardEvent
+                event={event}
+                key={index}
+                onClick={() => {
+                  setEventView(event);
+                  modalViewRef.current.open();
+                }}
+              />
+            ))}
+          </div>
+        )}
+        {!!events.length && !loading && (
+          <ReactPaginate
+            previousLabel="<"
+            nextLabel=">"
+            breakLabel="..."
+            initialPage={page - 1}
+            pageCount={totalPages}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={(selectedItem) => {
+              history.push(`/main/events/${selectedItem.selected + 1}`);
+            }}
+            containerClassName="pagination"
+            activeClassName="active"
+          />
+        )}
       </div>
-      <div />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 import Menu from '../../components/Menu';
 import Colab from '../Colab';
 import Jobs from '../Jobs';
+import Events from '../Events';
 
 function Main({ match }) {
   return (
@@ -27,6 +28,12 @@ function Main({ match }) {
           component={() => <Redirect to={`${match.url}/jobs/1`} />}
         />
         <Route exact path={`${match.url}/jobs/:page`} component={Jobs} />
+        <Route
+          exact
+          path={`${match.url}/events`}
+          component={() => <Redirect to={`${match.url}/events/1`} />}
+        />
+        <Route exact path={`${match.url}/events/:page`} component={Events} />
       </main>
     </div>
   );

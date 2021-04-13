@@ -66,11 +66,11 @@
   padding: 0 1.5rem 0 1rem;
   width: 100%;
   font-size: 1.6rem;
-  font-weight: 300;
 }
 
 .container > section > div > form > select[value=' '] {
   color: #888;
+  font-weight: 300;
 }
 
 .container > section > div > form > input::placeholder,
@@ -90,6 +90,7 @@
   padding: 1.5rem;
   width: 100%;
   resize: none;
+  white-space: pre-wrap;
 }
 
 .container > section > div > form > label {
@@ -133,6 +134,7 @@ select:invalid {
 
 select[graycolor='true'] {
   color: #888 !important;
+  font-weight: 300;
 }
 
 @media (max-width: 425px) {
