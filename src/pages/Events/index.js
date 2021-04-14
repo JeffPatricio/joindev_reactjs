@@ -5,7 +5,7 @@ import Button from '../../components/Button';
 import styles from './styles.module.css';
 import CardEvent from '../../components/CardEvent';
 import Job from '../../components/Modal/Job';
-import CreateJob from '../../components/Modal/CreateJob';
+import CreateEvent from '../../components/Modal/CreateEvent';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
@@ -52,7 +52,7 @@ function Events({ match, history }) {
     <div className={styles.container}>
       <HeaderPanel />
       <div ref={divListRef}>
-        <CreateJob ref={modalCreateRef} />
+        <CreateEvent ref={modalCreateRef} />
         <Job ref={modalViewRef} job={eventView} />
         <p>Eventos</p>
         <button onClick={() => modalCreateRef.current.open()}>

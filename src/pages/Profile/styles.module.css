@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container ::-webkit-scrollbar {
+  display: none;
+}
+
+.container > form {
+  display: flex;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+  padding: 0 5%;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: center;
+}
+
+.container > form > p {
+  font-size: 3.4rem;
+  font-weight: 300;
+  color: var(--font1);
+  margin-bottom: 2.5rem;
+  margin-top: 2rem;
+}

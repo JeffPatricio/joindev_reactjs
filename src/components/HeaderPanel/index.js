@@ -52,23 +52,13 @@ function HeaderPanel() {
         </header>
         <ul>
           <li>
-            <NavLink to="/settings/profile">
+            <NavLink to="/main/profile">
               <span
                 className="iconify"
                 data-icon="ph:user-light"
                 data-inline="false"
               />
               <p>Meu perfil</p>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/settings/password">
-              <span
-                className="iconify"
-                data-icon="ph:key-light"
-                data-inline="false"
-              />
-              <p>Alterar senha</p>
             </NavLink>
           </li>
           <li>
