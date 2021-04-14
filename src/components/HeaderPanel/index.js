@@ -92,7 +92,7 @@ function HeaderPanel() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/" onClick={() => signOut()}>
+            <NavLink to="/" onClick={() => signOut()} className="logout">
               <span
                 className="iconify"
                 data-icon="ph:sign-out-light"

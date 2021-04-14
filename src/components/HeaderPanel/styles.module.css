@@ -95,6 +95,14 @@
   transform: scale(1.05);
 }
 
+:global(.logout) {
+  color: var(--font1) !important;
+}
+
+.container > div > ul > li :global(a.active) {
+  color: var(--blue-hover);
+}
+
 .container > div > header > section {
   display: flex;
   flex-direction: column;
