@@ -30,7 +30,10 @@
 
 .container > form > img {
   width: 12rem;
+  min-width: 12rem;
   height: 12rem;
+  min-height: 12rem;
+  object-fit: cover;
   border-radius: 50%;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -56,6 +59,7 @@
   cursor: pointer;
   margin-bottom: 2.5rem;
   margin-right: 2rem;
+  transition: 0.2s;
 }
 
 .containerButtonsImage > button:first-child {
@@ -77,6 +81,11 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   font-size: 1.6rem;
   border: 0;
+}
+
+.container > form > input[type='email'] {
+  background: var(--gray);
+  cursor: not-allowed;
 }
 
 .container > form > label {
@@ -132,12 +141,21 @@
   padding: 0 25px;
   font-size: 1.5rem;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .buttons button + button {
   margin-left: 1rem;
   border: 1px solid var(--font2);
   color: var(--font2);
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.container input[type='file'] {
+  display: none !important;
 }
 
 @media (max-width: 768px) {
