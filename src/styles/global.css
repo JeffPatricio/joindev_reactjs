@@ -113,6 +113,7 @@ form select[errored='true'] {
 .mde-textarea-wrapper textarea {
   background: var(--background);
   color: var(--font1);
+  white-space: pre-wrap;
 }
 
 .mde-preview {

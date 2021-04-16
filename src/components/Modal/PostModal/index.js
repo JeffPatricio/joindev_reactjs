@@ -4,8 +4,6 @@ import styles from './styles.module.css';
 import * as Showdown from 'showdown';
 import ReactMde from 'react-mde';
 
-import MDEditor from '@uiw/react-md-editor';
-
 function Post({ viewColab, ...props }, ref) {
   const [show, setShow] = React.useState(false);
 
@@ -38,24 +36,27 @@ function Post({ viewColab, ...props }, ref) {
           <h1>{viewColab.title}</h1>
           <div className={styles.content}>
             <ReactMde
-              l18n={{ write: '', preview: '' }}
+              l18n={{ write: ' ', preview: ' ' }}
               minEditorHeight={400}
               selectedTab="preview"
               minPreviewHeight={400}
+              onTabChange={() => {}}
               generateMarkdownPreview={() =>
                 Promise.resolve(converter.makeHtml(viewColab.text))
               }
             />
           </div>
-          <MDEditor.Markdown
-            source={Promise.resolve(converter.makeHtml(viewColab.text))}
-          />
+
           <h2>
             Postado por <strong>{viewColab.name} </strong>
             <small>há 12 horas.</small>
           </h2>
           <div className={styles.contentAddComments}>
-            <input id="story" name="story" />
+            <input
+              id="story"
+              name="story"
+              placeholder="Adicionar comentário..."
+            />
             <button type="button">Comentar</button>
           </div>
         </div>

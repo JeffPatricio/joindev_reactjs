@@ -19,8 +19,8 @@
   padding: 4rem 2rem;
   text-align: center;
   max-height: 90%;
-  max-width: 38%;
-  min-width: 38%;
+  max-width: 35%;
+  min-width: 35%;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
 }
 
@@ -46,8 +46,8 @@
 .container > section > div > form > input {
   height: 4rem;
   border-radius: 5px;
-  background: var(--gray);
-  border: 0;
+  background: transparent;
+  border: 1px solid var(--gray);
   margin-bottom: 2rem;
   margin-top: 0.5rem;
   color: var(--font1);
@@ -58,19 +58,19 @@
 .container > section > div > form > label {
   color: var(--font1);
   font-weight: 300;
-  margin-left: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-left: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 .container > section > div > form > select {
   height: 18rem;
   border-radius: 5px;
-  background: var(--gray);
-  border: 0;
+  background: transparent;
+  border: 1px solid var(--gray);
   margin-bottom: 2rem;
   margin-top: 0.5rem;
   width: 100%;
-  padding: 2rem 0;
+  padding: 0;
 }
 
 .container > section > div > form > select option {

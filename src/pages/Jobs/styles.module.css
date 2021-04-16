@@ -32,10 +32,6 @@
 .container > div > form > button {
   transition: 0.1s;
 }
-.container > div > button:hover,
-.container > div > form > button:hover {
-  transform: scale(1.05);
-}
 
 .container > div > button {
   display: flex;

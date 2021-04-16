@@ -12,13 +12,21 @@
   z-index: 10;
 }
 
+.container :global(.mde-header) {
+  display: none !important;
+}
+
+.container :global(.react-mde) {
+  border: 0 !important;
+}
+
 .container > section {
   background: var(--background);
   border-radius: 30px;
   color: #fff;
   max-height: 95%;
-  max-width: 40%;
-  min-width: 40%;
+  max-width: 35%;
+  min-width: 35%;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
   padding: 6rem 3rem;
 }
@@ -31,7 +39,7 @@
 .container > section > div > h1 {
   font-size: 2rem;
   margin-top: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   color: var(--blue);
   font-weight: 400;
   text-align: center;
@@ -80,10 +88,10 @@
 }
 
 .container div .contentAddComments input {
-  background: var(--gray);
+  background: transparent;
   color: #fff;
   padding: 0 1.5rem;
-  border: 0;
+  border: 1px solid var(--gray);
   border-radius: 8px;
   max-height: 4rem;
   height: 4rem;

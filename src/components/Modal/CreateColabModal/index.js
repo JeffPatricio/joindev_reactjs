@@ -22,11 +22,8 @@ import * as Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { useHistory } from 'react-router-dom';
 
-import MDEditor from '@uiw/react-md-editor';
-
 const schema = Yup.object().shape({
   title: Yup.string().required('Campo obrigatório'),
-  text: Yup.string().required('Campo obrigatório'),
   tags: Yup.array()
     .of(Yup.number())
     .min(1, 'Necessário escolher ao menos uma tag'),
@@ -83,19 +80,27 @@ function CreatePostModal({ ...props }, ref) {
   }, []);
 
   async function handleSubmit(data) {
-    console.log(data);
     try {
       formRef.current.setErrors({});
       await schema.validate(data, {
         abortEarly: false,
       });
 
+      if (!value) {
+        showToast('Necessário preencher um texto para o colab', 'error');
+        return;
+      }
+
       buttonRef.current.addLoad();
 
       const dataTags = data.tags.map((tag) => ({ id: tag }));
 
       axios
-        .post('/colabs', { ...data, tags: dataTags })
+        .post('/colabs', {
+          ...data,
+          text: value.replace(/\n/g, '<br>'),
+          tags: dataTags,
+        })
         .then(({ data }) => {
           const { success, message } = data;
           buttonRef.current.removeLoad();
@@ -133,7 +138,7 @@ function CreatePostModal({ ...props }, ref) {
   if (!show) return <Fragment />;
 
   return (
-    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+    <div className={styles.container} {...props}>
       <section onClick={(e) => e.stopPropagation()}>
         <div onClick={(e) => e.stopPropagation()}>
           <p>Adicionar postagem</p>
@@ -145,7 +150,6 @@ function CreatePostModal({ ...props }, ref) {
               name="tags"
               options={tagsRef.current.tags}
             />
-            <Input hidden value={value} name="text" readOnly />
             <label>Conteúdo</label>
             <ReactMde
               l18n={{ write: 'Escrever', preview: 'Visualizar' }}
@@ -167,9 +171,6 @@ function CreatePostModal({ ...props }, ref) {
                 onClick={() => setShow(false)}
               />
             </div>
-
-            <MDEditor value={value} onChange={setValue} />
-            <MDEditor.Markdown source={value} />
           </Form>
         </div>
       </section>

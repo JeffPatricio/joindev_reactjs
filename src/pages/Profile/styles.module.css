@@ -150,10 +150,6 @@
   color: var(--font2);
 }
 
-button:hover {
-  transform: scale(1.05);
-}
-
 .container input[type='file'] {
   display: none !important;
 }

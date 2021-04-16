@@ -27,7 +27,6 @@ function Colab({ history, match }) {
     axios
       .get('/colabs?search=' + search + '&page=' + page)
       .then(({ data }) => {
-        console.log(data);
         if (data.success) {
           setColabs(data.colabs);
           setTotalPages(data.totalPages);
