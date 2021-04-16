@@ -1901,7 +1901,15 @@
     "@typescript-eslint/types" "4.5.0"
     eslint-visitor-keys "^2.0.0"
 
-"@uiw/react-markdown-preview@^2.1.1":
+"@uiw/react-markdown-editor@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@uiw/react-markdown-editor/-/react-markdown-editor-3.1.2.tgz#e9b726316a2983aeb9ed79581dd9cc1aeb399f31"
+  integrity sha512-XZUWDZ25o79/81088NO3XztrVr6wpTToEHhMY/lWVUXfzC0RXYP9lJHUgIckz8aJ4Trqm39cmGrws3wdIivjWQ==
+  dependencies:
+    "@uiw/react-markdown-preview" "2.1.1"
+    codemirror "5.60.0"
+
+"@uiw/react-markdown-preview@2.1.1", "@uiw/react-markdown-preview@^2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@uiw/react-markdown-preview/-/react-markdown-preview-2.1.1.tgz#d6e8fadaf582f45f1dfede9da9dd604205112a1d"
   integrity sha512-0elyhbmBCZVfhT62cQuixREReFHWJZonZQy28cGHNn4Sr8ONC06R66UyqWjEMWdWFSLZrNdEZDsRVuqYX/oJGw==
@@ -3349,6 +3357,11 @@ coa@^2.0.2:
     "@types/q" "^1.5.1"
     chalk "^2.4.1"
     q "^1.1.2"
+
+codemirror@5.60.0:
+  version "5.60.0"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.60.0.tgz#00a8cfd287d5d8737ceb73987f04aee2fe5860da"
+  integrity sha512-AEL7LhFOlxPlCL8IdTcJDblJm8yrAGib7I+DErJPdZd4l6imx8IMgKK3RblVgBQqz3TZJR4oknQ03bz+uNjBYA==
 
 collect-v8-coverage@^1.0.0:
   version "1.0.1"

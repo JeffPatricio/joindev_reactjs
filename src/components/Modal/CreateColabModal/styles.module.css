@@ -43,6 +43,11 @@
   align-items: flex-start;
 }
 
+.container > section > div > form > div {
+  width: 99.5%;
+  margin-left: 1px;
+}
+
 .container > section > div > form > input {
   height: 4rem;
   border-radius: 5px;
@@ -100,10 +105,15 @@
 
 .container div .buttons button + button {
   margin-left: 1rem;
+  margin-right: 2px;
   border: 1px solid var(--font2);
   color: var(--font2);
 }
 
 .container ::-webkit-scrollbar {
   display: none;
+}
+
+.container :global(.CodeMirror) {
+  height: 300px !important;
 }
