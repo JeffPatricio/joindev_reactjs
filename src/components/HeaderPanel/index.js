@@ -72,7 +72,7 @@ function HeaderPanel() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/settings/jobs">
+            <NavLink to="/main/myjobs">
               <span
                 className="iconify"
                 data-icon="ph:briefcase-light"
@@ -82,7 +82,7 @@ function HeaderPanel() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/settings/events">
+            <NavLink to="/main/myevents">
               <span
                 className="iconify"
                 data-icon="ph:calendar-light"
