@@ -1,6 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable prettier/prettier */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, {
   forwardRef,
   Fragment,
@@ -21,18 +18,20 @@ import { useHistory } from 'react-router-dom';
 
 const schema = Yup.object().shape({
   title: Yup.string().required(''),
-  company: Yup.string().required(''),
-  city: Yup.string().required(''),
-  state: Yup.string().required(''),
-  contact: Yup.string().required(''),
+  address: Yup.string().required(''),
+  date: Yup.date().required('').typeError('Data inválida'),
+  url: Yup.string(),
   details: Yup.string().required(''),
+  image: Yup.string().required(''),
 });
 
 function CreateEvent({ ...props }, ref) {
   const formRef = useRef(null);
   const buttonRef = useRef(null);
+  const inputFileRef = useRef(null);
   const { showToast } = useToast();
   const [show, setShow] = useState(false);
+  const [filename, setFilename] = useState('');
   const history = useHistory();
 
   useImperativeHandle(
@@ -60,6 +59,7 @@ function CreateEvent({ ...props }, ref) {
 
   async function handleSubmit(data) {
     try {
+      if (data.date === '') delete data.date;
       formRef.current.setErrors({});
       await schema.validate(data, {
         abortEarly: false,
@@ -67,8 +67,17 @@ function CreateEvent({ ...props }, ref) {
 
       buttonRef.current.addLoad();
 
+      const form = new FormData();
+
+      form.append('title', data.title);
+      form.append('address', data.address);
+      form.append('date', data.date);
+      form.append('url', data.url);
+      form.append('details', data.details);
+      form.append('file', inputFileRef.current.files[0]);
+
       axios
-        .post('/jobs', { ...data, city: `${data.city} - ${data.state}` })
+        .post('/events', form)
         .then(({ data }) => {
           const { success, message } = data;
           buttonRef.current.removeLoad();
@@ -77,9 +86,10 @@ function CreateEvent({ ...props }, ref) {
             return;
           }
           showToast(message, 'success');
+          inputFileRef.current.value = [];
           setShow(false);
           history.push({
-            pathname: '/main/jobs',
+            pathname: '/main/events',
             state: {
               reload: true,
             },
@@ -87,7 +97,7 @@ function CreateEvent({ ...props }, ref) {
         })
         .catch(() => {
           buttonRef.current.removeLoad();
-          showToast('Ocorreu um erro ao cadastrar a vaga', 'error');
+          showToast('Ocorreu um erro ao cadastrar o evento', 'error');
         });
     } catch (err) {
       const validationErrors = {};
@@ -109,12 +119,33 @@ function CreateEvent({ ...props }, ref) {
         <div onClick={(e) => e.stopPropagation()}>
           <p>Adicionar Evento</p>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input type="text" placeholder="Título" name="title" autoFocus />
-            <Input type="text" placeholder="Endereço" name="address" />
-            <Input type="date" placeholder="Data" name="date" />
-            <Input type="text" placeholder="URL" name="url" />
-            <Textarea type="text" placeholder="Detalhes" name="details" />
-            <Input type="file" placeholder="Imagem" name="image" />
+            <Input type="text" label="Título" name="title" autoFocus />
+            <Input type="text" label="Endereço" name="address" />
+            <Input
+              type="datetime-local"
+              label="Data e hora do evento"
+              name="date"
+            />
+            <Input type="text" label="URL" name="url" />
+            <Textarea type="text" label="Detalhes" name="details" />
+            <Input
+              type="text"
+              label="Imagem"
+              name="image"
+              readOnly
+              onClick={() => inputFileRef.current.click()}
+              value={filename}
+            />
+            <input
+              ref={inputFileRef}
+              type="file"
+              style={{ display: 'none' }}
+              accept="image/png, image/jpeg"
+              onChange={() => {
+                if (!inputFileRef.current.files[0]) return;
+                setFilename(inputFileRef.current.files[0].name);
+              }}
+            />
 
             <div className={styles.buttons}>
               <Button ref={buttonRef} type="submit" text="Salvar" />

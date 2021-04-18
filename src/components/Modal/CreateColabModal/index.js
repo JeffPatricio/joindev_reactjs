@@ -17,12 +17,8 @@ import { Form } from '@unform/web';
 import axios from 'axios';
 import styles from './styles.module.css';
 
-// import ReactMde from 'react-mde';
-// import * as Showdown from 'showdown';
-
 import MarkdownEditor from '@uiw/react-markdown-editor';
 
-import 'react-mde/lib/styles/css/react-mde-all.css';
 import { useHistory } from 'react-router-dom';
 
 const schema = Yup.object().shape({
@@ -171,6 +167,7 @@ function CreatePostModal({ ...props }, ref) {
               value={value}
               onChange={(editor, data, value) => setValue(value)}
             />
+
             <div className={styles.buttons}>
               <Button ref={buttonRef} type="submit" text="Salvar" />
               <Button

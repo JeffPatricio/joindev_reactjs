@@ -96,7 +96,7 @@
 .container > section > div > form > label {
   color: var(--font1);
   font-weight: 300;
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
   margin-bottom: 0.2rem;
 }
 

@@ -36,6 +36,7 @@ function Events({ match, history }) {
         .get(`/events?page=${page}&search=${search}`)
         .then(({ data }) => {
           if (data.success) {
+            console.log(data.events);
             setEvents(data.events);
             setTotalPages(data.totalPages);
             setLoading(false);

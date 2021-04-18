@@ -50,6 +50,11 @@ function AuthProvider() {
     axios.defaults.headers.common['Authorization'] = `Bearer ${authData.token}`;
   }
 
+  function updateUser(authData) {
+    storageServices.setAuthData({ ...authUser, ...authData });
+    setAuthUser({ ...authUser, ...authData });
+  }
+
   function signOut() {
     setAuthUser({ authenticated: false });
     storageServices.cleanStorage();
@@ -66,6 +71,7 @@ function AuthProvider() {
         authUser,
         signIn,
         signOut,
+        updateUser,
       }}
     >
       {loading && <LoadingPage />}

@@ -6,8 +6,6 @@ import 'moment/locale/pt-br';
 moment.locale('pt-br');
 
 function CardEvents({ event }) {
-  console.log(event);
-
   const date = new Date(event.date);
   date.setUTCHours(3);
 

@@ -7,6 +7,9 @@ import HeaderPanel from '../../components/HeaderPanel';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useAuth } from '../../contexts/AuthContext';
+import { useToast } from '../../contexts/ToastContext';
+import axios from 'axios';
+
 import styles from './styles.module.css';
 import * as Yup from 'yup';
 
@@ -53,7 +56,9 @@ const schema = Yup.object().shape({
 function Profile() {
   const removePhoto = React.useRef({ remove: false });
   const inputFileRef = React.useRef(null);
-  const { authUser } = useAuth();
+  const buttonRef = React.useRef(null);
+  const { authUser, updateUser } = useAuth();
+  const { showToast } = useToast();
   const formRef = React.useRef(null);
   const [linkImage, setLinkImage] = React.useState(authUser.photo);
 
@@ -64,8 +69,58 @@ function Profile() {
         abortEarly: false,
       });
 
-      console.log(dataForm);
+      buttonRef.current.addLoad();
+
+      const form = new FormData();
+
+      form.append('name', dataForm.name);
+      form.append('isCompany', dataForm.isCompany);
+
+      if (removePhoto.current.remove) {
+        form.append('removePhoto', 'true');
+      }
+
+      if (!!inputFileRef.current.files[0]) {
+        console.log('foi');
+        form.append('file', inputFileRef.current.files[0]);
+      }
+
+      if (!!dataForm.currentPassword) {
+        console.log('old');
+        form.append('oldPassword', dataForm.currentPassword);
+        form.append('newPassword', dataForm.newPassword);
+        form.append('confirmNewPassword', dataForm.confirmNewPassword);
+      }
+
+      axios
+        .put('/users', form)
+        .then(({ data }) => {
+          console.log(data);
+          buttonRef.current.removeLoad();
+          const { success, message, user } = data;
+          if (!success) {
+            showToast(message, 'error');
+            return;
+          }
+
+          const updated = {
+            name: user.name,
+            isCompany: user.isCompany,
+            photo: user.photo,
+          };
+
+          removePhoto.current.remove = false;
+          inputFileRef.current.value = [];
+
+          showToast(message, 'success');
+          updateUser(updated);
+        })
+        .catch(() => {
+          buttonRef.current.removeLoad();
+          showToast('Ocorreu um erro ao atualizar o perfil', 'error');
+        });
     } catch (err) {
+      buttonRef.current.removeLoad();
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach((error) => {
@@ -84,6 +139,7 @@ function Profile() {
         initialData={{
           name: authUser.name,
           email: authUser.email,
+          isCompany: authUser.isCompany,
         }}
         onSubmit={submitUpdate}
       >
@@ -122,7 +178,12 @@ function Profile() {
         <Input type="text" label="Nome" name="name" />
         <Input type="email" label="E-mail" name="email" disabled />
         <div className={styles.checkbox}>
-          <Input name="isCompany" type="checkbox" id="isCompany" />
+          <Input
+            name="isCompany"
+            type="checkbox"
+            id="isCompany"
+            defaultChecked={authUser.isCompany}
+          />
           <label htmlFor="isCompany">Sou uma empresa</label>
         </div>
         <p className={styles.info}>
@@ -136,7 +197,7 @@ function Profile() {
           name="confirmNewPassword"
         />
         <div className={styles.buttons}>
-          <Button type="submit" text="Salvar" />
+          <Button ref={buttonRef} type="submit" text="Salvar" />
         </div>
       </Form>
     </div>
