@@ -17,7 +17,7 @@ function Post({ colab, onClick }) {
         />
         <div>
           <h1>{colab.title}</h1>
-          <p>{colab.name}</p>
+          <p>Postado por {colab.name}</p>
         </div>
       </section>
       <section>

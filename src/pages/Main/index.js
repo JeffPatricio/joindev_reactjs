@@ -6,6 +6,7 @@ import Colab from '../Colab';
 import Jobs from '../Jobs';
 import Events from '../Events';
 import Profile from '../Profile';
+import MyColabs from '../MyColabs';
 
 function Main({ match }) {
   return (
@@ -36,6 +37,18 @@ function Main({ match }) {
         />
         <Route exact path={`${match.url}/events/:page`} component={Events} />
         <Route exact path={`${match.url}/profile`} component={Profile} />
+
+        <Route exact path={`${match.url}/mycolabs`} component={MyColabs} />
+        <Route
+          exact
+          path={`${match.url}/mycolabs`}
+          component={() => <Redirect to={`${match.url}/mycolabs/1`} />}
+        />
+        <Route
+          exact
+          path={`${match.url}/mycolabs/:page`}
+          component={MyColabs}
+        />
       </main>
     </div>
   );

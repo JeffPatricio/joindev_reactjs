@@ -23,6 +23,8 @@
     "import/order": "off",
     "import/no-cycle": "off",
     "no-shadow": "off",
+    "prefer-template": "off",
+    "no-extra-boolean-cast": "off",
     "react/button-has-type": "off",
     "no-use-before-define": "off",
     "import/prefer-default-export": "off",

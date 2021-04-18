@@ -62,7 +62,7 @@ function HeaderPanel() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/settings/colabs">
+            <NavLink to="/main/mycolabs">
               <span
                 className="iconify"
                 data-icon="ph:book-open-light"
