@@ -22,7 +22,7 @@ function Colab({ history, match }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('/colabs?search=' + search + '&page=' + page)
+      .get('/colabs?search=' + search + '&page=' + page + '&userId=true')
       .then(({ data }) => {
         if (data.success) {
           setColabs(data.colabs);

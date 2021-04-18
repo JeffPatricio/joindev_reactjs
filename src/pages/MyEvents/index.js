@@ -33,7 +33,7 @@ function Events({ match, history }) {
     (async () => {
       setLoading(true);
       axios
-        .get(`/events?page=${page}&search=${search}`)
+        .get(`/events?page=${page}&search=${search}&userId=true`)
         .then(({ data }) => {
           if (data.success) {
             console.log(data.events);

@@ -58,6 +58,17 @@
   margin-bottom: 3rem;
 }
 
+.emptyList {
+  display: flex;
+  margin-bottom: 6rem;
+}
+
+.emptyList h4 {
+  font-weight: 300;
+  font-size: 1.8rem;
+  color: var(--font2);
+}
+
 @media (max-width: 1024px) {
   .container {
     padding: 5rem;
