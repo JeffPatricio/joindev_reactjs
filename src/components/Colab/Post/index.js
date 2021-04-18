@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -7,6 +6,8 @@ import styles from './styles.module.css';
 moment.locale('pt-br');
 
 function Post({ colab, onClick }) {
+  console.log(colab);
+
   return (
     <div className={styles.container} onClick={onClick}>
       <section>

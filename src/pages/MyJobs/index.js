@@ -1,16 +1,17 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useRef } from 'react';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext';
 import HeaderPanel from '../../components/HeaderPanel';
 import Button from '../../components/Button';
 import styles from './styles.module.css';
 import CardVacancies from '../../components/CardVacancies';
 import Job from '../../components/Modal/Job';
 import CreateJob from '../../components/Modal/CreateJob';
-import axios from 'axios';
-import ReactPaginate from 'react-paginate';
 
 function Jobs({ match, history }) {
   const { page } = match.params;
+  const { authUser } = useAuth();
   const inputSearchRef = useRef(null);
   const divListRef = useRef(null);
   const formRef = useRef(null);
@@ -29,11 +30,13 @@ function Jobs({ match, history }) {
     console.log('handle');
   }
 
+  console.log(authUser);
+
   React.useEffect(() => {
     (async () => {
       setLoading(true);
       axios
-        .get(`/jobs?page=${page}&search=${search}`)
+        .get(`/jobs?page=${page}&search=${search}&userId=true`)
         .then(({ data }) => {
           if (data.success) {
             setJobs(data.jobs);

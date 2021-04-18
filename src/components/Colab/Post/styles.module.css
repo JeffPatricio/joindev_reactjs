@@ -81,3 +81,9 @@
   font-size: 1.4rem;
   color: var(--font2);
 }
+
+@media (max-width: 1000px) {
+  .container {
+    width: 100%;
+  }
+}

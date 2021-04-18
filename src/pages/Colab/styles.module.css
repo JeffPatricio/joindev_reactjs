@@ -58,12 +58,9 @@
   margin-bottom: 3rem;
 }
 
-@media (max-width: 1024px) {
-  .container {
-    padding: 5rem;
-  }
+@media (max-width: 1000px) {
   .panelColabs {
-    width: 85%;
+    padding: 2rem;
   }
 }
 
