@@ -114,6 +114,10 @@
   display: none;
 }
 
-.container :global(.CodeMirror) {
+.container :global(.ql-container) {
   height: 300px !important;
+}
+
+.container :global(.quill) {
+  color: var(--font1);
 }

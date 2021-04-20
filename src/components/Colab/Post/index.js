@@ -6,8 +6,6 @@ import styles from './styles.module.css';
 moment.locale('pt-br');
 
 function Post({ colab, onClick }) {
-  console.log(colab);
-
   return (
     <div className={styles.container} onClick={onClick}>
       <section>
@@ -28,7 +26,7 @@ function Post({ colab, onClick }) {
             data-icon="ph:chat-centered-text-thin"
             data-inline="false"
           />
-          <p>12 comentarios</p>
+          <p>{colab.comments.length} comentarios</p>
         </div>
         <p>{moment(colab.createdAt).fromNow()}</p>
       </section>

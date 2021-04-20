@@ -50,7 +50,11 @@ function Colab({ history, match }) {
       <HeaderPanel />
       <div className={styles.panelColabs}>
         <CreateColabModal ref={refModalCreate} />
-        <PostModal viewColab={viewColab} ref={refModalView} />
+        <PostModal
+          viewColab={viewColab}
+          ref={refModalView}
+          cleanView={() => setViewColab(null)}
+        />
         <p>Colabs</p>
         <button onClick={() => refModalCreate.current.open()}>
           <span

@@ -14,8 +14,11 @@ import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import axios from 'axios';
 import styles from './styles.module.css';
-import MarkdownEditor from '@uiw/react-markdown-editor';
+// import MarkdownEditor from '@uiw/react-markdown-editor';
 import { useHistory } from 'react-router-dom';
+
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const schema = Yup.object().shape({
   title: Yup.string().required('Campo obrigatório'),
@@ -138,10 +141,12 @@ function CreatePostModal({ ...props }, ref) {
             />
             <label>Conteúdo</label>
 
-            <MarkdownEditor
+            {/* <MarkdownEditor
               value={value}
               onChange={(editor, data, value) => setValue(value)}
-            />
+            /> */}
+
+            <ReactQuill theme="snow" value={value} onChange={setValue} />
 
             <div className={styles.buttons}>
               <Button ref={buttonRef} type="submit" text="Salvar" />
