@@ -5,12 +5,12 @@ import 'moment/locale/pt-br';
 
 moment.locale('pt-br');
 
-function CardEvents({ event }) {
+function CardEvents({ event, onClick }) {
   const date = new Date(event.date);
   date.setUTCHours(3);
 
   return (
-    <div className={styles.content}>
+    <div className={styles.content} onClick={onClick}>
       <img src={event.image} alt=" " />
       <div className={styles.contentCard}>
         <h1>{event.title}</h1>

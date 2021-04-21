@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-.container ::-webkit-scrollbar {
+.container > div::-webkit-scrollbar {
   display: none;
 }
 

@@ -20,7 +20,7 @@
   max-width: 40%;
   min-width: 40%;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
-  padding: 4rem;
+  padding: 4rem 0;
 }
 
 .container > section > div {
@@ -28,6 +28,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 0 4rem;
 }
 
 .container > section > div > h3 {
@@ -84,10 +85,6 @@
   color: var(--font1);
   font-weight: 300;
   font-size: 1.4rem;
-}
-
-.container ::-webkit-scrollbar {
-  display: none;
 }
 
 @media (max-width: 425px) {
