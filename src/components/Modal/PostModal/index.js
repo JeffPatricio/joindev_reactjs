@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
+import Button from '../../Button';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { useToast } from '../../../contexts/ToastContext';
 import 'moment/locale/pt-br';
@@ -8,8 +9,9 @@ import styles from './styles.module.css';
 
 moment.locale('pt-br');
 
-function Post({ viewColab, cleanView, ...props }, ref) {
+function Post({ viewColab, cleanView, commentColab, ...props }, ref) {
   const { showToast } = useToast();
+  const buttonRef = React.useRef(null);
   const [show, setShow] = React.useState(false);
   const [comment, setComment] = React.useState('');
 
@@ -32,6 +34,7 @@ function Post({ viewColab, cleanView, ...props }, ref) {
 
   async function handleSubmit() {
     if (!comment) return;
+    buttonRef.current.addLoad();
     axios
       .post('/colabs/comments', {
         text: comment,
@@ -44,10 +47,20 @@ function Post({ viewColab, cleanView, ...props }, ref) {
           return;
         }
 
+        const comment = {
+          createdAt: data.comment.created_at,
+          id: data.comment.id,
+          name: data.comment.user.name,
+          text: data.comment.text,
+        };
+
+        buttonRef.current.removeLoad();
+        commentColab(comment);
         showToast(message, 'success');
         setComment('');
       })
       .catch(() => {
+        buttonRef.current.removeLoad();
         showToast('Ocorreu um erro ao comentar a colab', 'error');
       });
   }
@@ -77,11 +90,31 @@ function Post({ viewColab, cleanView, ...props }, ref) {
               placeholder="Adicionar comentário..."
               value={comment}
               onChange={(e) => setComment(e.currentTarget.value)}
+              onKeyPress={(event) => {
+                if (event.key === 'Enter') {
+                  handleSubmit();
+                }
+              }}
             />
-            <button type="button" onClick={handleSubmit}>
-              Comentar
-            </button>
+            <Button
+              ref={buttonRef}
+              type="button"
+              text="Comentar"
+              onClick={handleSubmit}
+            />
           </div>
+
+          <section className={styles.comments}>
+            {viewColab.comments.map((comment) => (
+              <div key={comment.id}>
+                <h1>
+                  {comment.name}
+                  <small>{moment(comment.createdAt).fromNow()}</small>
+                </h1>
+                <p>{comment.text}</p>
+              </div>
+            ))}
+          </section>
         </div>
       </section>
     </div>

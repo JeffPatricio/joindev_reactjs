@@ -7,7 +7,7 @@ function ToastProvider({ children }) {
   function showToast(message, type = 'default') {
     toast(message, {
       position: 'top-right',
-      autoClose: 10000,
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,

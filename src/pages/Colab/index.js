@@ -45,6 +45,22 @@ function Colab({ history, match }) {
     }
   }, [viewColab]);
 
+  function commentColab(comment) {
+    const old = viewColab;
+    old.comments.unshift(comment);
+    setViewColab(old);
+    axios
+      .get('/colabs?search=' + search + '&page=' + page)
+      .then(({ data }) => {
+        if (data.success) {
+          setColabs(data.colabs);
+          setTotalPages(data.totalPages);
+          setSearchCount(data.count);
+        }
+      })
+      .catch(() => {});
+  }
+
   return (
     <div className={styles.container}>
       <HeaderPanel />
@@ -54,6 +70,7 @@ function Colab({ history, match }) {
           viewColab={viewColab}
           ref={refModalView}
           cleanView={() => setViewColab(null)}
+          commentColab={commentColab}
         />
         <p>Colabs</p>
         <button onClick={() => refModalCreate.current.open()}>

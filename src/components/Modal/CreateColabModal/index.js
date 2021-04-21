@@ -76,7 +76,7 @@ function CreatePostModal({ ...props }, ref) {
       });
 
       if (!value) {
-        showToast('Necessário preencher um texto para o colab', 'error');
+        showToast('Necessário preencher um conteúdo para a postagem', 'error');
         return;
       }
 
@@ -127,7 +127,7 @@ function CreatePostModal({ ...props }, ref) {
   if (!show) return <Fragment />;
 
   return (
-    <div className={styles.container} {...props}>
+    <div className={styles.container} {...props} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div onClick={(e) => e.stopPropagation()}>
           <p>Adicionar postagem</p>

@@ -25,8 +25,8 @@
   border-radius: 30px;
   color: #fff;
   max-height: 95%;
-  max-width: 35%;
-  min-width: 35%;
+  max-width: 40%;
+  min-width: 40%;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
   padding: 4rem 3rem;
 }
@@ -122,4 +122,39 @@
   flex-direction: column;
   width: 100%;
   flex: 1;
+}
+
+:global(.wmde-markdown P) {
+  font-size: 1.6rem !important;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.comments > div {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  margin-bottom: 2rem;
+}
+
+.comments > div h1 {
+  font-size: 1.6rem;
+  color: var(--blue);
+  font-weight: 300;
+}
+
+.comments > div h1 > small {
+  margin-left: 1rem;
+  color: var(--font1);
+}
+
+.comments > div p {
+  font-size: 1.5rem;
+  color: var(--font1);
+  font-weight: 300;
+  margin-top: 1rem;
 }
