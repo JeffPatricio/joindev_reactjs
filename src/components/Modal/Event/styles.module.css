@@ -27,6 +27,53 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 0 0 3rem;
+}
+
+.container > section > div > img {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.container > section > div > section {
+  padding: 3rem;
+  overflow-y: auto;
+}
+
+.container > section > div > section > h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: var(--blue);
+  font-weight: 400;
+}
+
+.container > section > div > section > p {
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  color: var(--font1);
+  font-weight: 300;
+}
+
+.container > section > div > section > ul {
+  font-size: 1.5rem;
+  color: var(--blue);
+  font-weight: 500;
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.container > section > div > section > ul > li {
+  margin-bottom: 0.5rem;
+}
+
+.container > section > div > section > ul > li > small {
+  color: var(--font1);
+  font-weight: 300;
+  font-size: 1.4rem;
 }
 
 @media (max-width: 425px) {

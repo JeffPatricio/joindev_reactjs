@@ -33,11 +33,30 @@ function Event({ event, ...props }, ref) {
 
   if (!show) return <React.Fragment />;
 
+  const date = new Date(event.date);
+  date.setUTCHours(3);
+
   return (
     <div className={styles.container} {...props} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div>
           <img src={event.image} alt=" " />
+          <section>
+            <h1>{event.title}</h1>
+            <p>{event.details}</p>
+            <ul>
+              <li>
+                Endereço: <small>{event.address}</small>
+              </li>
+              <li>
+                Data:{' '}
+                <small>{moment(date).format('DD/MM/YYYY HH:mm:ss')}</small>
+              </li>
+              <li>
+                URL: <small>{event.url}</small>
+              </li>
+            </ul>
+          </section>
         </div>
       </section>
     </div>
