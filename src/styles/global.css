@@ -175,3 +175,7 @@ form select[errored='true'] {
     margin-bottom: 5rem;
   }
 }
+
+.swal2-popup {
+  font-size: 1.6rem !important;
+}

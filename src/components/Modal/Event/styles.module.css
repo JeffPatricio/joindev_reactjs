@@ -76,6 +76,34 @@
   font-size: 1.4rem;
 }
 
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--blue);
+  font-size: 2.2rem;
+}
+
+.options > section {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.options > section > div {
+  display: flex;
+}
+
+.options > section > p {
+  font-size: 1.6rem;
+  margin-left: 0.2rem;
+  font-weight: 300;
+}
+
+.options > section:last-child {
+  margin-left: 2rem;
+}
+
 @media (max-width: 425px) {
   .container > section {
     max-width: 95%;

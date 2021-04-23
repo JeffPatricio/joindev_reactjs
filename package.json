@@ -28,6 +28,8 @@
     "react-toastify": "^7.0.3",
     "showdown": "^1.9.1",
     "styled-components": "^5.2.0",
+    "sweetalert-react": "^0.4.11",
+    "sweetalert2": "^10.16.6",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.9"
   },

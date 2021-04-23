@@ -1,12 +1,18 @@
 import React from 'react';
-import styles from './styles.module.css';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import { useToast } from '../../../contexts/ToastContext';
+import styles from './styles.module.css';
 
 moment.locale('pt-br');
 
-function Event({ event, ...props }, ref) {
+function Event({ event, withOptions, ...props }, ref) {
   const [show, setShow] = React.useState(false);
+  const { showToast } = useToast();
+  const history = useHistory();
 
   React.useImperativeHandle(
     ref,
@@ -42,6 +48,70 @@ function Event({ event, ...props }, ref) {
         <div>
           <img src={event.image} alt=" " />
           <section>
+            {withOptions && (
+              <div className={styles.options}>
+                <section>
+                  <div>
+                    <span
+                      className="iconify"
+                      data-icon="ph:pencil-simple-light"
+                      data-inline="false"
+                    />
+                  </div>
+                  <p>Editar</p>
+                </section>
+                <section
+                  onClick={() => {
+                    Swal.fire({
+                      title: 'Excluir o evento?',
+                      text:
+                        'Você não poderá mais recuperar os dados desse evento',
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonText: 'Sim, excluir',
+                      confirmButtonColor: '#007bdb',
+                      cancelButtonColor: '#888',
+                      cancelButtonText: 'Cancelar',
+                    }).then((result) => {
+                      if (result.value) {
+                        axios
+                          .delete('/events/' + event.id)
+                          .then(({ data }) => {
+                            if (!data.success) {
+                              showToast(data.message, 'error');
+                              return;
+                            }
+                            showToast(data.message, 'success');
+                            setShow(false);
+                            history.push({
+                              pathname: '/main/myevents',
+                              state: {
+                                reload: true,
+                              },
+                            });
+                          })
+                          .catch((err) => {
+                            console.log(err);
+                            showToast(
+                              'Ocorreu um erro ao excluir o evento',
+                              'error'
+                            );
+                          });
+                      }
+                    });
+                  }}
+                >
+                  <div>
+                    <span
+                      className="iconify"
+                      data-icon="ph:trash-light"
+                      data-inline="false"
+                    />
+                  </div>
+                  <p>Excluir</p>
+                </section>
+              </div>
+            )}
             <h1>{event.title}</h1>
             <p>{event.details}</p>
             <ul>

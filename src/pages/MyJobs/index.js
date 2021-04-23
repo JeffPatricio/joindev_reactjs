@@ -56,7 +56,7 @@ function Jobs({ match, history }) {
       <HeaderPanel />
       <div ref={divListRef}>
         <CreateJob ref={modalCreateRef} />
-        <Job ref={modalViewRef} job={jobView} />
+        <Job ref={modalViewRef} job={jobView} withOptions />
         <p>Minhas Vagas</p>
         <button onClick={() => modalCreateRef.current.open()}>
           <span
