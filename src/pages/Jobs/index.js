@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useRef } from 'react';
 import HeaderPanel from '../../components/HeaderPanel';
 import Button from '../../components/Button';

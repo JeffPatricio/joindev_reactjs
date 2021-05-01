@@ -3,17 +3,23 @@ import moment from 'moment';
 import axios from 'axios';
 import Button from '../../Button';
 import MarkdownPreview from '@uiw/react-markdown-preview';
+import Swal from 'sweetalert2';
 import { useToast } from '../../../contexts/ToastContext';
 import 'moment/locale/pt-br';
 import styles from './styles.module.css';
+import { useHistory } from 'react-router-dom';
 
 moment.locale('pt-br');
 
-function Post({ viewColab, cleanView, commentColab, ...props }, ref) {
+function Post(
+  { viewColab, cleanView, commentColab, withOptions, ...props },
+  ref
+) {
   const { showToast } = useToast();
   const buttonRef = React.useRef(null);
   const [show, setShow] = React.useState(false);
   const [comment, setComment] = React.useState('');
+  const history = useHistory();
 
   React.useImperativeHandle(
     ref,
@@ -61,7 +67,7 @@ function Post({ viewColab, cleanView, commentColab, ...props }, ref) {
       })
       .catch(() => {
         buttonRef.current.removeLoad();
-        showToast('Ocorreu um erro ao comentar a colab', 'error');
+        showToast('Ocorreu um erro ao comentar o colab', 'error');
       });
   }
 
@@ -71,6 +77,69 @@ function Post({ viewColab, cleanView, commentColab, ...props }, ref) {
     <div className={styles.container} {...props} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div>
+          {withOptions && (
+            <div className={styles.options}>
+              <section>
+                <div>
+                  <span
+                    className="iconify"
+                    data-icon="ph:pencil-simple-light"
+                    data-inline="false"
+                  />
+                </div>
+                <p>Editar</p>
+              </section>
+              <section
+                onClick={() => {
+                  Swal.fire({
+                    title: 'Excluir o colab?',
+                    text: 'Todos os dados desse colab serão perdidos',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, excluir',
+                    confirmButtonColor: '#007bdb',
+                    cancelButtonColor: '#888',
+                    cancelButtonText: 'Cancelar',
+                  }).then((result) => {
+                    if (result.value) {
+                      axios
+                        .delete('/colabs/' + viewColab.id)
+                        .then(({ data }) => {
+                          if (!data.success) {
+                            showToast(data.message, 'error');
+                            return;
+                          }
+                          showToast(data.message, 'success');
+                          setShow(false);
+                          history.push({
+                            pathname: '/main/mycolabs',
+                            state: {
+                              reload: true,
+                            },
+                          });
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                          showToast(
+                            'Ocorreu um erro ao excluir o colab',
+                            'error'
+                          );
+                        });
+                    }
+                  });
+                }}
+              >
+                <div>
+                  <span
+                    className="iconify"
+                    data-icon="ph:trash-light"
+                    data-inline="false"
+                  />
+                </div>
+                <p>Excluir</p>
+              </section>
+            </div>
+          )}
           <h1>{viewColab.title}</h1>
           <div className={styles.content}>
             <MarkdownPreview

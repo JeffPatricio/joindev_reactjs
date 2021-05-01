@@ -68,6 +68,7 @@ function Colab({ history, match }) {
           ref={refModalView}
           cleanView={() => setViewColab(null)}
           commentColab={commentColab}
+          withOptions
         />
         <p>Meus Colabs</p>
         <button onClick={() => refModalCreate.current.open()}>
