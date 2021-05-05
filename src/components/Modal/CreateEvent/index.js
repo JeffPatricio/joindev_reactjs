@@ -14,7 +14,7 @@ import { Form } from '@unform/web';
 import axios from 'axios';
 import styles from './styles.module.css';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const schema = Yup.object().shape({
   title: Yup.string().required(''),
@@ -25,7 +25,7 @@ const schema = Yup.object().shape({
   image: Yup.string().required(''),
 });
 
-function CreateEvent({ ...props }, ref) {
+function CreateEvent({ eventEdit, ...props }, ref) {
   const formRef = useRef(null);
   const buttonRef = useRef(null);
   const inputFileRef = useRef(null);
@@ -33,6 +33,17 @@ function CreateEvent({ ...props }, ref) {
   const [show, setShow] = useState(false);
   const [filename, setFilename] = useState('');
   const history = useHistory();
+  const location = useLocation();
+
+  console.log(location);
+
+  const initialValues = {
+    title: !!eventEdit ? eventEdit.title : '',
+    address: !!eventEdit ? eventEdit.address : '',
+    date: !!eventEdit ? eventEdit.date.substr(0, 16) : '',
+    url: !!eventEdit ? eventEdit.url : '',
+    details: !!eventEdit ? eventEdit.details : '',
+  };
 
   useImperativeHandle(
     ref,
@@ -53,11 +64,73 @@ function CreateEvent({ ...props }, ref) {
         setShow(false);
       }
     };
+    if (!!eventEdit) {
+      setFilename(eventEdit.image);
+    }
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
   }, [show]);
 
   async function handleSubmit(data) {
+    try {
+      if (data.date === '') delete data.date;
+      formRef.current.setErrors({});
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      buttonRef.current.addLoad();
+
+      const form = new FormData();
+
+      form.append('title', data.title);
+      form.append('address', data.address);
+      form.append('date', data.date);
+      form.append('url', data.url);
+      form.append('details', data.details);
+      if (!!inputFileRef.current.files[0]) {
+        form.append('file', inputFileRef.current.files[0]);
+      }
+
+      axios
+        .put('/events/' + eventEdit.id, form)
+        .then(({ data }) => {
+          const { success, message } = data;
+          buttonRef.current.removeLoad();
+          if (!success) {
+            showToast(message, 'error');
+            return;
+          }
+          showToast(message, 'success');
+          inputFileRef.current.value = [];
+          setShow(false);
+          history.push({
+            pathname:
+              location.pathname.indexOf('myevents') > -1
+                ? '/main/myevents'
+                : '/main/events',
+            state: {
+              reload: true,
+            },
+          });
+        })
+        .catch(() => {
+          buttonRef.current.removeLoad();
+          showToast('Ocorreu um erro ao atualizar o evento', 'error');
+        });
+    } catch (err) {
+      const validationErrors = {};
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        formRef.current.setErrors(validationErrors);
+        showToast('Necessário preencher os campos destacados', 'error');
+      }
+    }
+  }
+
+  async function handleEdit(data) {
     try {
       if (data.date === '') delete data.date;
       formRef.current.setErrors({});
@@ -89,7 +162,10 @@ function CreateEvent({ ...props }, ref) {
           inputFileRef.current.value = [];
           setShow(false);
           history.push({
-            pathname: '/main/events',
+            pathname:
+              location.pathname.indexOf('myevents') > -1
+                ? '/main/myevents'
+                : '/main/events',
             state: {
               reload: true,
             },
@@ -117,8 +193,12 @@ function CreateEvent({ ...props }, ref) {
     <div className={styles.container} {...props} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div onClick={(e) => e.stopPropagation()}>
-          <p>Adicionar Evento</p>
-          <Form ref={formRef} onSubmit={handleSubmit}>
+          <p>{!!eventEdit ? 'Editar evento' : 'Adicionar Evento'}</p>
+          <Form
+            ref={formRef}
+            onSubmit={!!eventEdit ? handleSubmit : handleEdit}
+            initialData={initialValues}
+          >
             <Input type="text" label="Título" name="title" autoFocus />
             <Input type="text" label="Endereço" name="address" />
             <Input

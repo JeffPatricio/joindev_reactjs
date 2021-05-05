@@ -18,6 +18,7 @@ function Events({ match, history }) {
   const modalCreateRef = useRef(null);
   const buttonRef = useRef(null);
   const [eventView, setEventView] = React.useState(null);
+  const [eventEdit, setEventEdit] = React.useState(null);
   const [searchCount, setSearchCount] = React.useState('');
   const [search, setSearch] = React.useState('');
   const [totalPages, setTotalPages] = React.useState(1);
@@ -49,12 +50,23 @@ function Events({ match, history }) {
     })();
   }, [search, page]);
 
+  async function editEvent(job) {
+    setEventEdit(job);
+    modalCreateRef.current.open();
+    modalViewRef.current.close();
+  }
+
   return (
     <div className={styles.container}>
       <HeaderPanel />
       <div ref={divListRef}>
-        <CreateEvent ref={modalCreateRef} />
-        <Event ref={modalViewRef} event={eventView} withOptions />
+        <CreateEvent ref={modalCreateRef} eventEdit={eventEdit} />
+        <Event
+          ref={modalViewRef}
+          event={eventView}
+          withOptions
+          editEvent={editEvent}
+        />
         <p>Meus Eventos</p>
         <button onClick={() => modalCreateRef.current.open()}>
           <span

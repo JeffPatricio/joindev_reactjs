@@ -11,7 +11,7 @@ import 'moment/locale/pt-br';
 
 moment.locale('pt-br');
 
-function Job({ viewVacancie, job, withOptions, ...props }, ref) {
+function Job({ viewVacancie, job, withOptions, editJob, ...props }, ref) {
   const [show, setShow] = React.useState(false);
   const { showToast } = useToast();
   const history = useHistory();
@@ -47,7 +47,11 @@ function Job({ viewVacancie, job, withOptions, ...props }, ref) {
         <div>
           {withOptions && (
             <div className={styles.options}>
-              <section>
+              <section
+                onClick={() => {
+                  editJob(job);
+                }}
+              >
                 <div>
                   <span
                     className="iconify"

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
-import { useAuth } from '../../contexts/AuthContext';
 import HeaderPanel from '../../components/HeaderPanel';
 import Button from '../../components/Button';
 import styles from './styles.module.css';
@@ -11,7 +10,6 @@ import CreateJob from '../../components/Modal/CreateJob';
 
 function Jobs({ match, history }) {
   const { page } = match.params;
-  const { authUser } = useAuth();
   const inputSearchRef = useRef(null);
   const divListRef = useRef(null);
   const formRef = useRef(null);
@@ -19,6 +17,7 @@ function Jobs({ match, history }) {
   const modalCreateRef = useRef(null);
   const buttonRef = useRef(null);
   const [jobView, setJobView] = React.useState(null);
+  const [jobEdit, setJobEdit] = React.useState(null);
   const [searchCount, setSearchCount] = React.useState('');
   const [search, setSearch] = React.useState('');
   const [totalPages, setTotalPages] = React.useState(1);
@@ -30,7 +29,10 @@ function Jobs({ match, history }) {
     console.log('handle');
   }
 
-  console.log(authUser);
+  async function editJob(job) {
+    setJobEdit(job);
+    modalCreateRef.current.open();
+  }
 
   React.useEffect(() => {
     (async () => {
@@ -55,8 +57,8 @@ function Jobs({ match, history }) {
     <div className={styles.container}>
       <HeaderPanel />
       <div ref={divListRef}>
-        <CreateJob ref={modalCreateRef} />
-        <Job ref={modalViewRef} job={jobView} withOptions />
+        <CreateJob ref={modalCreateRef} jobEdit={jobEdit} />
+        <Job ref={modalViewRef} job={jobView} withOptions editJob={editJob} />
         <p>Minhas Vagas</p>
         <button onClick={() => modalCreateRef.current.open()}>
           <span

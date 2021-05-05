@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 
 moment.locale('pt-br');
 
-function Event({ event, withOptions, ...props }, ref) {
+function Event({ event, withOptions, editEvent, ...props }, ref) {
   const [show, setShow] = React.useState(false);
   const { showToast } = useToast();
   const history = useHistory();
@@ -50,7 +50,7 @@ function Event({ event, withOptions, ...props }, ref) {
           <section>
             {withOptions && (
               <div className={styles.options}>
-                <section>
+                <section onClick={() => editEvent(event)}>
                   <div>
                     <span
                       className="iconify"

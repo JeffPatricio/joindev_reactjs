@@ -147,11 +147,11 @@ function CreateJob({ ...props }, ref) {
         <div onClick={(e) => e.stopPropagation()}>
           <p>Adicionar Vaga</p>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input type="text" placeholder="Título" name="title" autoFocus />
-            <Input type="text" placeholder="Empresa" name="company" />
+            <Input type="text" label="Título" name="title" autoFocus />
+            <Input type="text" label="Empresa" name="company" />
             <Select
               graycolor={state === '' ? 'true' : ''}
-              placeholder="Estado"
+              label="Estado"
               name="state"
               options={states.map((state) => ({
                 value: state.sigla,
@@ -161,15 +161,15 @@ function CreateJob({ ...props }, ref) {
             />
             <Select
               disabled={state === ''}
-              placeholder="Cidade"
+              label="Cidade"
               name="city"
               options={cities.map((city) => ({
                 value: city.nome,
                 label: city.nome,
               }))}
             />
-            <Input type="text" placeholder="Contato" name="contact" />
-            <Textarea type="text" placeholder="Detalhes" name="details" />
+            <Input type="text" label="Contato" name="contact" />
+            <Textarea type="text" label="Detalhes" name="details" />
 
             <div className={styles.buttons}>
               <Button ref={buttonRef} type="submit" text="Salvar" />
