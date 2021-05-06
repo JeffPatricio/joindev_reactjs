@@ -35,8 +35,6 @@ function CreateEvent({ eventEdit, ...props }, ref) {
   const history = useHistory();
   const location = useLocation();
 
-  console.log(location);
-
   const initialValues = {
     title: !!eventEdit ? eventEdit.title : '',
     address: !!eventEdit ? eventEdit.address : '',

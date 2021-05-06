@@ -32,6 +32,7 @@ function Jobs({ match, history }) {
   async function editJob(job) {
     setJobEdit(job);
     modalCreateRef.current.open();
+    modalViewRef.current.close();
   }
 
   React.useEffect(() => {
@@ -57,7 +58,11 @@ function Jobs({ match, history }) {
     <div className={styles.container}>
       <HeaderPanel />
       <div ref={divListRef}>
-        <CreateJob ref={modalCreateRef} jobEdit={jobEdit} />
+        <CreateJob
+          ref={modalCreateRef}
+          jobEdit={jobEdit}
+          cleanEdit={() => setJobEdit(null)}
+        />
         <Job ref={modalViewRef} job={jobView} withOptions editJob={editJob} />
         <p>Minhas Vagas</p>
         <button onClick={() => modalCreateRef.current.open()}>

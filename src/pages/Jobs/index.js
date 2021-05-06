@@ -25,7 +25,6 @@ function Jobs({ match, history }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log('handle');
   }
 
   React.useEffect(() => {

@@ -6,13 +6,13 @@ import { useField } from '@unform/core';
 
 const SelectUnform = ({ name, options = [], label, ...rest }) => {
   const inputRef = useRef(null);
-  const [v, setV] = React.useState('');
   const {
     fieldName,
     defaultValue = rest.multiple ? [] : '',
     registerField,
     error,
   } = useField(name);
+  const [v, setV] = React.useState(defaultValue || '');
 
   useEffect(() => {
     registerField({

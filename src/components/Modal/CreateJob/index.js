@@ -1,6 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable prettier/prettier */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, {
   forwardRef,
   Fragment,
@@ -18,7 +15,7 @@ import { Form } from '@unform/web';
 import axios from 'axios';
 import styles from './styles.module.css';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const schema = Yup.object().shape({
   title: Yup.string().required(''),
@@ -29,7 +26,7 @@ const schema = Yup.object().shape({
   details: Yup.string().required(''),
 });
 
-function CreateJob({ ...props }, ref) {
+function CreateJob({ jobEdit, cleanEdit }, ref) {
   const formRef = useRef(null);
   const buttonRef = useRef(null);
   const { showToast } = useToast();
@@ -38,6 +35,16 @@ function CreateJob({ ...props }, ref) {
   const [cities, setCities] = useState([]);
   const [state, setState] = useState('');
   const history = useHistory();
+  const location = useLocation();
+
+  const initialValues = {
+    title: !!jobEdit ? jobEdit.title : '',
+    company: !!jobEdit ? jobEdit.company : '',
+    city: !!jobEdit ? jobEdit.city.split(' - ')[0] : '',
+    state: !!jobEdit ? jobEdit.city.split(' - ')[1] : '',
+    contact: !!jobEdit ? jobEdit.contact : '',
+    details: !!jobEdit ? jobEdit.details : '',
+  };
 
   useImperativeHandle(
     ref,
@@ -69,6 +76,12 @@ function CreateJob({ ...props }, ref) {
   }, []);
 
   React.useEffect(() => {
+    if (!jobEdit) return;
+    setState(jobEdit.city.split(' - ')[1]);
+  }, [jobEdit]);
+
+  React.useEffect(() => {
+    if (!state) return;
     axios
       .get(
         `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/distritos`
@@ -92,6 +105,9 @@ function CreateJob({ ...props }, ref) {
         setShow(false);
       }
     };
+    if (!show && !!cleanEdit) {
+      cleanEdit();
+    }
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
   }, [show]);
@@ -117,7 +133,10 @@ function CreateJob({ ...props }, ref) {
           showToast(message, 'success');
           setShow(false);
           history.push({
-            pathname: '/main/jobs',
+            pathname:
+              location.pathname.indexOf('myjobs') > -1
+                ? '/main/myjobs'
+                : '/main/jobs',
             state: {
               reload: true,
             },
@@ -139,14 +158,67 @@ function CreateJob({ ...props }, ref) {
     }
   }
 
+  async function handleEdit(data) {
+    try {
+      formRef.current.setErrors({});
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      buttonRef.current.addLoad();
+
+      axios
+        .put('/jobs/' + jobEdit.id, {
+          ...data,
+          city: `${data.city} - ${data.state}`,
+        })
+        .then(({ data }) => {
+          const { success, message } = data;
+          buttonRef.current.removeLoad();
+          if (!success) {
+            showToast(message, 'error');
+            return;
+          }
+          showToast(message, 'success');
+          setShow(false);
+          history.push({
+            pathname:
+              location.pathname.indexOf('myjobs') > -1
+                ? '/main/myjobs'
+                : '/main/jobs',
+            state: {
+              reload: true,
+            },
+          });
+        })
+        .catch(() => {
+          buttonRef.current.removeLoad();
+          showToast('Ocorreu um erro ao atualizar a vaga', 'error');
+        });
+    } catch (err) {
+      const validationErrors = {};
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        formRef.current.setErrors(validationErrors);
+        showToast('Necessário preencher os campos destacados', 'error');
+      }
+    }
+  }
+
   if (!show) return <Fragment />;
 
   return (
-    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+    <div className={styles.container} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div onClick={(e) => e.stopPropagation()}>
           <p>Adicionar Vaga</p>
-          <Form ref={formRef} onSubmit={handleSubmit}>
+          <Form
+            ref={formRef}
+            onSubmit={!!jobEdit ? handleEdit : handleSubmit}
+            initialData={initialValues}
+          >
             <Input type="text" label="Título" name="title" autoFocus />
             <Input type="text" label="Empresa" name="company" />
             <Select

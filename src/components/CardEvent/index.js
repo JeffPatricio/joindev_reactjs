@@ -7,7 +7,8 @@ moment.locale('pt-br');
 
 function CardEvents({ event, onClick }) {
   const date = new Date(event.date);
-  date.setUTCHours(3);
+
+  date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
 
   return (
     <div className={styles.content} onClick={onClick}>
