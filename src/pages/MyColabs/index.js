@@ -15,6 +15,7 @@ function Colab({ history, match }) {
   const [colabs, setColabs] = useState([]);
   const [search, setSearch] = useState('');
   const [viewColab, setViewColab] = useState(null);
+  const [colabEdit, setColabEdit] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = React.useState(true);
   const [searchCount, setSearchCount] = React.useState('');
@@ -58,17 +59,28 @@ function Colab({ history, match }) {
       .catch(() => {});
   }
 
+  async function editColab(colab) {
+    setColabEdit(colab);
+    refModalCreate.current.open();
+    refModalView.current.close();
+  }
+
   return (
     <div className={styles.container}>
       <HeaderPanel />
       <div className={styles.panelColabs}>
-        <CreateColabModal ref={refModalCreate} />
+        <CreateColabModal
+          ref={refModalCreate}
+          colabEdit={colabEdit}
+          cleanEdit={() => setColabEdit(null)}
+        />
         <PostModal
           viewColab={viewColab}
           ref={refModalView}
           cleanView={() => setViewColab(null)}
           commentColab={commentColab}
           withOptions
+          editColab={editColab}
         />
         <p>Meus Colabs</p>
         <button onClick={() => refModalCreate.current.open()}>

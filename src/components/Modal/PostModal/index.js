@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 moment.locale('pt-br');
 
 function Post(
-  { viewColab, cleanView, commentColab, withOptions, ...props },
+  { viewColab, cleanView, commentColab, withOptions, editColab, ...props },
   ref
 ) {
   const { showToast } = useToast();
@@ -79,7 +79,7 @@ function Post(
         <div>
           {withOptions && (
             <div className={styles.options}>
-              <section>
+              <section onClick={() => editColab(viewColab)}>
                 <div>
                   <span
                     className="iconify"
