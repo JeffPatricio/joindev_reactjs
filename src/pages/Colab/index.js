@@ -110,8 +110,8 @@ function Colab({ history, match }) {
           ))}
         {!!colabs.length && !loading && (
           <ReactPaginate
-            previousLabel="<"
-            nextLabel=">"
+            previousLabel={totalPages > 1 ? '<' : ''}
+            nextLabel={totalPages > 1 ? '>' : ''}
             breakLabel="..."
             initialPage={page - 1}
             pageCount={totalPages}

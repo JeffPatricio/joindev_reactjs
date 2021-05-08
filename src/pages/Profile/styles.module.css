@@ -62,7 +62,7 @@
   transition: 0.2s;
 }
 
-.containerButtonsImage > button:first-child {
+.containerButtonsImage > .buttonDelete {
   border: 1px solid var(--red);
   color: var(--red);
 }
@@ -144,7 +144,7 @@
   transition: 0.2s;
 }
 
-.buttons button + button {
+.buttons .buttonUpdate {
   margin-left: 1rem;
   border: 1px solid var(--font2);
   color: var(--font2);

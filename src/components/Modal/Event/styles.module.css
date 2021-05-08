@@ -76,12 +76,18 @@
   font-size: 1.4rem;
 }
 
+.container > section > div > section > ul > li > small > a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
 .options {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   color: var(--blue);
   font-size: 2.2rem;
+  margin-bottom: 3rem;
 }
 
 .options > section {

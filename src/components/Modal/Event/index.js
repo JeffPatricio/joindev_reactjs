@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useImperativeHandle, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -9,12 +9,12 @@ import styles from './styles.module.css';
 
 moment.locale('pt-br');
 
-function Event({ event, withOptions, editEvent, ...props }, ref) {
+function Event({ event, withOptions, editEvent }, ref) {
   const [show, setShow] = React.useState(false);
   const { showToast } = useToast();
   const history = useHistory();
 
-  React.useImperativeHandle(
+  useImperativeHandle(
     ref,
     () => {
       return {
@@ -27,7 +27,7 @@ function Event({ event, withOptions, editEvent, ...props }, ref) {
     []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27 && show) {
         setShow(false);
@@ -43,7 +43,7 @@ function Event({ event, withOptions, editEvent, ...props }, ref) {
   date.setUTCHours(3);
 
   return (
-    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+    <div className={styles.container} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div>
           <img src={event.image} alt=" " />
@@ -64,8 +64,7 @@ function Event({ event, withOptions, editEvent, ...props }, ref) {
                   onClick={() => {
                     Swal.fire({
                       title: 'Excluir o evento?',
-                      text:
-                        'Você não poderá mais recuperar os dados desse evento',
+                      text: 'Todos os dados desse evento serão perdidos',
                       icon: 'warning',
                       showCancelButton: true,
                       confirmButtonText: 'Sim, excluir',
@@ -123,7 +122,10 @@ function Event({ event, withOptions, editEvent, ...props }, ref) {
                 <small>{moment(date).format('DD/MM/YYYY HH:mm:ss')}</small>
               </li>
               <li>
-                URL: <small>{event.url}</small>
+                URL:{' '}
+                <small>
+                  <a href={event.url}>{event.url}</a>
+                </small>
               </li>
             </ul>
           </section>

@@ -4,6 +4,7 @@ import React, {
   useState,
   useImperativeHandle,
   useRef,
+  useEffect,
 } from 'react';
 import Input from '../../Input';
 import Textarea from '../../Textarea';
@@ -12,9 +13,8 @@ import { useToast } from '../../../contexts/ToastContext';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import axios from 'axios';
-import styles from './styles.module.css';
-
 import { useHistory, useLocation } from 'react-router-dom';
+import styles from './styles.module.css';
 
 const schema = Yup.object().shape({
   title: Yup.string().required(''),
@@ -25,7 +25,7 @@ const schema = Yup.object().shape({
   image: Yup.string().required(''),
 });
 
-function CreateEvent({ eventEdit, ...props }, ref) {
+function CreateEvent({ eventEdit, cleanEdit }, ref) {
   const formRef = useRef(null);
   const buttonRef = useRef(null);
   const inputFileRef = useRef(null);
@@ -56,7 +56,7 @@ function CreateEvent({ eventEdit, ...props }, ref) {
     []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27 && show) {
         setShow(false);
@@ -64,6 +64,10 @@ function CreateEvent({ eventEdit, ...props }, ref) {
     };
     if (!!eventEdit) {
       setFilename(eventEdit.image);
+    }
+    if (!show && !!eventEdit) {
+      cleanEdit();
+      setFilename('');
     }
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
@@ -188,7 +192,7 @@ function CreateEvent({ eventEdit, ...props }, ref) {
   if (!show) return <Fragment />;
 
   return (
-    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+    <div className={styles.container} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div onClick={(e) => e.stopPropagation()}>
           <p>{!!eventEdit ? 'Editar evento' : 'Adicionar Evento'}</p>
@@ -197,18 +201,18 @@ function CreateEvent({ eventEdit, ...props }, ref) {
             onSubmit={!!eventEdit ? handleSubmit : handleEdit}
             initialData={initialValues}
           >
-            <Input type="text" label="Título" name="title" autoFocus />
-            <Input type="text" label="Endereço" name="address" />
+            <Input type="text" label="Título *" name="title" autoFocus />
+            <Input type="text" label="Endereço *" name="address" />
             <Input
               type="datetime-local"
-              label="Data e hora do evento"
+              label="Data e hora do evento *"
               name="date"
             />
             <Input type="text" label="URL" name="url" />
-            <Textarea type="text" label="Detalhes" name="details" />
+            <Textarea type="text" label="Detalhes *" name="details" />
             <Input
               type="text"
-              label="Imagem"
+              label="Imagem *"
               name="image"
               readOnly
               onClick={() => inputFileRef.current.click()}

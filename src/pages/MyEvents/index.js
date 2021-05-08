@@ -60,7 +60,11 @@ function Events({ match, history }) {
     <div className={styles.container}>
       <HeaderPanel />
       <div ref={divListRef}>
-        <CreateEvent ref={modalCreateRef} eventEdit={eventEdit} />
+        <CreateEvent
+          ref={modalCreateRef}
+          eventEdit={eventEdit}
+          cleanEdit={() => setEventEdit(null)}
+        />
         <Event
           ref={modalViewRef}
           event={eventView}
@@ -151,8 +155,8 @@ function Events({ match, history }) {
         )}
         {!!events.length && !loading && (
           <ReactPaginate
-            previousLabel="<"
-            nextLabel=">"
+            previousLabel={totalPages > 1 ? '<' : ''}
+            nextLabel={totalPages > 1 ? '>' : ''}
             breakLabel="..."
             initialPage={page - 1}
             pageCount={totalPages}

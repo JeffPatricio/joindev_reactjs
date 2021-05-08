@@ -150,17 +150,24 @@ function Profile() {
           src={linkImage || 'https://i.ibb.co/dDpxVpV/Group-50.png'}
         />
         <div className={styles.containerButtonsImage}>
+          {!!linkImage && (
+            <button
+              className={styles.buttonDelete}
+              type="button"
+              onClick={() => {
+                if (!linkImage) return;
+                setLinkImage(null);
+                removePhoto.current.remove = true;
+              }}
+            >
+              Remover foto
+            </button>
+          )}
           <button
+            className={styles.buttonUpdate}
+            onClick={() => inputFileRef.current.click()}
             type="button"
-            onClick={() => {
-              if (!linkImage) return;
-              setLinkImage(null);
-              removePhoto.current.remove = true;
-            }}
           >
-            Remover foto
-          </button>
-          <button onClick={() => inputFileRef.current.click()} type="button">
             Alterar foto
           </button>
         </div>
@@ -175,8 +182,8 @@ function Profile() {
             setLinkImage(linkImage);
           }}
         />
-        <Input type="text" label="Nome" name="name" />
-        <Input type="email" label="E-mail" name="email" disabled />
+        <Input type="text" label="Nome *" name="name" />
+        <Input type="email" label="E-mail *" name="email" disabled />
         <div className={styles.checkbox}>
           <Input
             name="isCompany"
