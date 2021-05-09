@@ -117,7 +117,7 @@ function CreatePostModal({ colabEdit, cleanEdit }, ref) {
             pathname:
               location.pathname.indexOf('mycolabs') > -1
                 ? '/main/mycolabs'
-                : '/main/colabs',
+                : '/main/colab',
             state: {
               reload: true,
             },

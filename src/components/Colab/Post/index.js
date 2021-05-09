@@ -17,6 +17,11 @@ function Post({ colab, onClick }) {
         <div>
           <h1>{colab.title}</h1>
           <p>Postado por {colab.name}</p>
+          <section className={styles.tags}>
+            {colab.tags.map((tag, index) => (
+              <div key={index}>{tag.title}</div>
+            ))}
+          </section>
         </div>
       </section>
       <section>

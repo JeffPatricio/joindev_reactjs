@@ -4,6 +4,7 @@ import React, {
   useState,
   useImperativeHandle,
   useRef,
+  useEffect,
 } from 'react';
 import Input from '../../Input';
 import Select from '../../Select';
@@ -59,11 +60,13 @@ function CreateJob({ jobEdit, cleanEdit }, ref) {
     []
   );
 
-  React.useEffect(() => {
-    axios
-      .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-      .then(({ data }) => {
-        const ordened = data.sort((a, b) => {
+  useEffect(() => {
+    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        const ordened = res.sort((a, b) => {
           return a.nome.toLowerCase() < b.nome.toLowerCase()
             ? -1
             : a.nome.toLowerCase() > b.nome.toLowerCase()
@@ -72,22 +75,27 @@ function CreateJob({ jobEdit, cleanEdit }, ref) {
         });
         setStates(ordened);
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!jobEdit) return;
     setState(jobEdit.city.split(' - ')[1]);
   }, [jobEdit]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!state) return;
-    axios
-      .get(
-        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/distritos`
-      )
-      .then(({ data }) => {
-        const ordened = data.sort((a, b) => {
+
+    fetch(
+      `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/distritos`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        const ordened = res.sort((a, b) => {
           return a.nome.toLowerCase() < b.nome.toLowerCase()
             ? -1
             : a.nome.toLowerCase() > b.nome.toLowerCase()
@@ -96,10 +104,12 @@ function CreateJob({ jobEdit, cleanEdit }, ref) {
         });
         setCities(ordened);
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, [state]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27 && show) {
         setShow(false);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useImperativeHandle, useEffect } from 'react';
 import styles from './styles.module.css';
 import logo from './joindev.svg';
 import moment from 'moment';
@@ -11,12 +11,12 @@ import 'moment/locale/pt-br';
 
 moment.locale('pt-br');
 
-function Job({ viewVacancie, job, withOptions, editJob, ...props }, ref) {
+function Job({ job, withOptions, editJob }, ref) {
   const [show, setShow] = React.useState(false);
   const { showToast } = useToast();
   const history = useHistory();
 
-  React.useImperativeHandle(
+  useImperativeHandle(
     ref,
     () => {
       return {
@@ -29,7 +29,7 @@ function Job({ viewVacancie, job, withOptions, editJob, ...props }, ref) {
     []
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27 && show) {
         setShow(false);
@@ -42,7 +42,7 @@ function Job({ viewVacancie, job, withOptions, editJob, ...props }, ref) {
   if (!show) return <React.Fragment />;
 
   return (
-    <div className={styles.container} {...props} onClick={() => setShow(false)}>
+    <div className={styles.container} onClick={() => setShow(false)}>
       <section onClick={(e) => e.stopPropagation()}>
         <div>
           {withOptions && (
@@ -65,7 +65,7 @@ function Job({ viewVacancie, job, withOptions, editJob, ...props }, ref) {
                 onClick={() => {
                   Swal.fire({
                     title: 'Excluir a vaga?',
-                    text: 'Você não poderá mais recuperar os dados dessa vaga',
+                    text: 'Todos os dados dessa vaga serão perdidos',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Sim, excluir',

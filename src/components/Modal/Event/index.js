@@ -40,7 +40,7 @@ function Event({ event, withOptions, editEvent }, ref) {
   if (!show) return <React.Fragment />;
 
   const date = new Date(event.date);
-  date.setUTCHours(3);
+  date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
 
   return (
     <div className={styles.container} onClick={() => setShow(false)}>
