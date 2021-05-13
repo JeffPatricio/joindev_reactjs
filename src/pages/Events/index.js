@@ -26,7 +26,6 @@ function Events({ match, history }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log('handle');
   }
 
   React.useEffect(() => {
@@ -36,7 +35,6 @@ function Events({ match, history }) {
         .get(`/events?page=${page}&search=${search}`)
         .then(({ data }) => {
           if (data.success) {
-            console.log(data.events);
             setEvents(data.events);
             setTotalPages(data.totalPages);
             setLoading(false);

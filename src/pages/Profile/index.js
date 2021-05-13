@@ -81,12 +81,10 @@ function Profile() {
       }
 
       if (!!inputFileRef.current.files[0]) {
-        console.log('foi');
         form.append('file', inputFileRef.current.files[0]);
       }
 
       if (!!dataForm.currentPassword) {
-        console.log('old');
         form.append('oldPassword', dataForm.currentPassword);
         form.append('newPassword', dataForm.newPassword);
         form.append('confirmNewPassword', dataForm.confirmNewPassword);
@@ -95,7 +93,6 @@ function Profile() {
       axios
         .put('/users', form)
         .then(({ data }) => {
-          console.log(data);
           buttonRef.current.removeLoad();
           const { success, message, user } = data;
           if (!success) {

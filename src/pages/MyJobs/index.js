@@ -26,7 +26,6 @@ function Jobs({ match, history }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log('handle');
   }
 
   async function editJob(job) {
