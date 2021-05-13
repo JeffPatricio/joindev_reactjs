@@ -153,4 +153,8 @@
   .search {
     width: 80%;
   }
+
+  .containerlist {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 100%));
+  }
 }

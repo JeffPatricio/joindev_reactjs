@@ -34,7 +34,7 @@
   margin-bottom: 3.5rem;
   margin-top: 1.5rem;
   font-size: 2rem;
-  color: var(--font1);
+  color: var(--blue);
 }
 
 .container > section > div > form {
@@ -120,4 +120,15 @@
 
 .container :global(.quill) {
   color: var(--font1);
+}
+
+@media (max-width: 425px) {
+  .container > section {
+    max-width: 90%;
+    min-width: 90%;
+  }
+
+  .container > section > div > form > select {
+    height: 5rem;
+  }
 }

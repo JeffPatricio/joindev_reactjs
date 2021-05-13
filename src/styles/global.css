@@ -172,7 +172,10 @@ form select[errored='true'] {
 
 @media (max-width: 425px) {
   .pagination {
-    margin-bottom: 5rem;
+    margin-bottom: 10rem;
+  }
+  html {
+    overflow: initial;
   }
 }
 

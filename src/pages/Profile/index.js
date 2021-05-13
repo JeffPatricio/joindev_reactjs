@@ -168,7 +168,7 @@ function Profile() {
             onClick={() => inputFileRef.current.click()}
             type="button"
           >
-            Alterar foto
+            {!!linkImage ? 'Alterar foto' : 'Adicionar foto'}
           </button>
         </div>
         <input

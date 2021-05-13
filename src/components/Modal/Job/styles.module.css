@@ -97,7 +97,7 @@
 }
 
 .container > section > div > div > div > h1 {
-  color: var(--font1);
+  color: var(--blue);
   font-weight: 400;
   font-size: 2.2rem;
   margin-bottom: 0.5rem;
