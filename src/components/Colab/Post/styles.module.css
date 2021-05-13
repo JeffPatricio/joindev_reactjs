@@ -38,7 +38,7 @@
 .container section:first-child > div > h1 {
   font-weight: 400;
   font-size: 2.2rem;
-  color: var(--blue);
+  color: var(--blue) !important;
   margin-bottom: 1.5rem;
 }
 
